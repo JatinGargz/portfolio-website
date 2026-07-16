@@ -82,6 +82,7 @@
                 <a href="#work" class="nav__link"><span class="nav__link-text">Projects</span></a>
                 <a href="#experience" class="nav__link"><span class="nav__link-text">Timeline</span></a>
                 <a href="#contact" class="nav__link"><span class="nav__link-text">Contact</span></a>
+                <a href="#" class="nav__link" download><span class="nav__link-text">Resume</span></a>
                 <div class="nav__separator"></div>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
                     <i class="ph ph-moon theme-toggle__icon" id="themeIcon"></i>
@@ -126,7 +127,7 @@
                 </h1>
 
                 <p class="hero__val-prop anim-reveal">
-                    I design and build AI-powered software, autonomous workflows, and intelligent applications by combining LLMs, machine learning, and modern software engineering.
+                    I design intelligent software by combining Large Language Models, Machine Learning, and scalable software engineering to build practical AI products and autonomous systems.
                 </p>
 
                 <!-- Social Proof Badges -->
@@ -134,7 +135,7 @@
                     <span class="proof-badge"><i class="ph ph-student"></i> 2nd Year @ DTU</span>
                     <span class="proof-badge"><i class="ph ph-terminal"></i> Backend Developer @ Woohl</span>
                     <span class="proof-badge"><i class="ph ph-certificate"></i> 8.8 CGPA</span>
-                    <span class="proof-badge"><i class="ph ph-robot"></i> 6+ AI Projects</span>
+                    <span class="proof-badge"><i class="ph ph-robot"></i> 6 Featured Projects</span>
                 </div>
 
                 <div class="hero__bottom anim-reveal">
@@ -272,16 +273,19 @@
                 <!-- Structured Projects Grid (Visual Mockups & Details) -->
                 <div class="work__list-revamp">
 
-                    <!-- Project 1: Fedora AI OS -->
+                    <!-- Project 1: Fedora AI OS (Flagship) -->
                     <div class="work-item-row anim-reveal">
-                        <div class="work-item-row__image-panel glow-card">
+                        <a href="fedora-ai-os.html" class="work-item-row__image-panel glow-card">
                             <div class="work-item-row__glow"></div>
                             <img src="assets/fedora_architecture.png" alt="Fedora AI OS System Architecture Mockup" class="work-item-row__img">
-                        </div>
+                        </a>
                         <div class="work-item-row__content">
                             <div class="work-item-row__meta">
                                 <span class="work-item-row__title">Fedora AI OS</span>
                                 <span class="work-item-row__badge">Flagship</span>
+                            </div>
+                            <div class="work-item-row__tech-chips">
+                                <span>Python</span><span>LangGraph</span><span>SELinux</span><span>Podman</span><span>Fedora</span>
                             </div>
                             <p class="work-item-row__tagline">AI-Native Secure Operating System for Autonomous AI Agents</p>
                             <p class="work-item-row__desc">
@@ -308,12 +312,13 @@
                                     <span class="num">100%</span>
                                     <span class="txt">Container Isolation</span>
                                 </div>
+                                <div class="metric-badge">
+                                    <span class="num">SELinux</span>
+                                    <span class="txt">Security Policies</span>
+                                </div>
                             </div>
 
                             <div class="work-item-row__footer">
-                                <div class="tags">
-                                    <span>Python</span><span>LangGraph</span><span>SELinux</span><span>Podman</span>
-                                </div>
                                 <div class="actions">
                                     <a href="https://github.com/JatinGargz" target="_blank" class="action-btn"><i class="ph ph-github-logo"></i> GitHub</a>
                                     <a href="fedora-ai-os.html" class="action-btn action-btn--primary">Read Case Study <i class="ph ph-arrow-right"></i></a>
@@ -322,50 +327,50 @@
                         </div>
                     </div>
 
-                    <!-- Project 2: Vigilant -->
+                    <!-- Project 2: AI Content Platform -->
                     <div class="work-item-row anim-reveal">
-                        <div class="work-item-row__image-panel glow-card">
+                        <a href="ai-content-platform.html" class="work-item-row__image-panel glow-card">
                             <div class="work-item-row__glow"></div>
-                            <img src="assets/vigilant_map.png" alt="Vigilant Map Hazard Dashboard Mockup" class="work-item-row__img">
-                        </div>
+                            <img src="assets/content_platform.png" alt="AI Content Generation Platform Canvas Mockup" class="work-item-row__img">
+                        </a>
                         <div class="work-item-row__content">
                             <div class="work-item-row__meta">
-                                <span class="work-item-row__title">Vigilant — AI Civic Intelligence</span>
+                                <span class="work-item-row__title">AI Content Generation Platform</span>
                             </div>
-                            <p class="work-item-row__tagline">AI-Powered Hyperlocal Hazard Reporting System</p>
+                            <div class="work-item-row__tech-chips">
+                                <span>Gemini API</span><span>Stable Diffusion</span><span>ComfyUI</span><span>Node.js</span>
+                            </div>
+                            <p class="work-item-row__tagline">Multimodal Content Creation & Creative Automation Pipeline</p>
                             <p class="work-item-row__desc">
-                                Built an intelligent civic hazard mapping platform. Utilizes Google's Gemini Vision API to instantly categorize uploaded image reports, estimate danger severity, detect submission spam, and map records on a Leaflet map.
+                                Formulated an automated creative pipeline that connects campaign brief outlines directly to image generations (SDXL), ComfyUI custom controls, and voice synthesis modules.
                             </p>
 
                             <div class="work-item-row__details">
                                 <div class="detail-block">
                                     <span class="label">Problem</span>
-                                    <span class="text">Manual urban hazard reviews are slow, slowing down repair crews and dispatch systems.</span>
+                                    <span class="text">Generating marketing assets requires extensive manual file movements and edits.</span>
                                 </div>
                                 <div class="detail-block">
                                     <span class="label">Solution</span>
-                                    <span class="text">Automated image evaluation and severity scoring tied to public Leaflet coordinate maps.</span>
+                                    <span class="text">Unified automation pipelines maintaining visual consistency nodes across models.</span>
                                 </div>
                             </div>
 
                             <div class="work-item-row__metrics">
                                 <div class="metric-badge">
-                                    <span class="num">500+</span>
-                                    <span class="txt">Hazards Processed</span>
+                                    <span class="num">80%</span>
+                                    <span class="txt">Time Saved</span>
                                 </div>
                                 <div class="metric-badge">
-                                    <span class="num">90%</span>
-                                    <span class="txt">Manual Review Cut</span>
+                                    <span class="num">100%</span>
+                                    <span class="txt">Visual Consistency</span>
                                 </div>
                             </div>
 
                             <div class="work-item-row__footer">
-                                <div class="tags">
-                                    <span>React</span><span>Vite</span><span>Leaflet</span><span>Gemini API</span>
-                                </div>
                                 <div class="actions">
                                     <a href="https://github.com/JatinGargz" target="_blank" class="action-btn"><i class="ph ph-github-logo"></i> GitHub</a>
-                                    <button class="action-btn action-btn--primary btn-case-study" data-project="vigilant">Read Case Study <i class="ph ph-arrow-right"></i></button>
+                                    <a href="ai-content-platform.html" class="action-btn action-btn--primary">Read Case Study <i class="ph ph-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -373,13 +378,16 @@
 
                     <!-- Project 3: Ghost Employee AI -->
                     <div class="work-item-row anim-reveal">
-                        <div class="work-item-row__image-panel glow-card">
+                        <a href="ghost-employee-ai.html" class="work-item-row__image-panel glow-card">
                             <div class="work-item-row__glow"></div>
                             <img src="assets/ghost_dashboard.png" alt="Ghost Employee AI Dashboard Analytics Mockup" class="work-item-row__img">
-                        </div>
+                        </a>
                         <div class="work-item-row__content">
                             <div class="work-item-row__meta">
                                 <span class="work-item-row__title">Ghost Employee AI</span>
+                            </div>
+                            <div class="work-item-row__tech-chips">
+                                <span>React</span><span>TypeScript</span><span>Tailwind</span><span>Gemini API</span>
                             </div>
                             <p class="work-item-row__tagline">AI-Powered Workforce Analytics & Productivity Platform</p>
                             <p class="work-item-row__desc">
@@ -399,60 +407,68 @@
 
                             <div class="work-item-row__metrics">
                                 <div class="metric-badge">
-                                    <span class="num">2 min</span>
-                                    <span class="txt">Analysis Duration</span>
+                                    <span class="num">100+</span>
+                                    <span class="txt">Concurrent Activities</span>
                                 </div>
                                 <div class="metric-badge">
-                                    <span class="num">98%</span>
-                                    <span class="txt">Data Formatting Accuracy</span>
+                                    <span class="num">&lt; 2 min</span>
+                                    <span class="txt">AI Reports Duration</span>
                                 </div>
                             </div>
 
                             <div class="work-item-row__footer">
-                                <div class="tags">
-                                    <span>React</span><span>TypeScript</span><span>Tailwind</span><span>Gemini API</span>
-                                </div>
                                 <div class="actions">
                                     <a href="https://github.com/JatinGargz" target="_blank" class="action-btn"><i class="ph ph-github-logo"></i> GitHub</a>
-                                    <button class="action-btn action-btn--primary btn-case-study" data-project="ghost-employee">Read Case Study <i class="ph ph-arrow-right"></i></button>
+                                    <a href="ghost-employee-ai.html" class="action-btn action-btn--primary">Read Case Study <i class="ph ph-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 4: AI Content Platform -->
+                    <!-- Project 4: Vigilant -->
                     <div class="work-item-row anim-reveal">
-                        <div class="work-item-row__image-panel glow-card">
+                        <a href="vigilant-ai.html" class="work-item-row__image-panel glow-card">
                             <div class="work-item-row__glow"></div>
-                            <img src="assets/content_platform.png" alt="AI Content Generation Platform Canvas Mockup" class="work-item-row__img">
-                        </div>
+                            <img src="assets/vigilant_map.png" alt="Vigilant Map Hazard Dashboard Mockup" class="work-item-row__img">
+                        </a>
                         <div class="work-item-row__content">
                             <div class="work-item-row__meta">
-                                <span class="work-item-row__title">AI Content Generation Platform</span>
+                                <span class="work-item-row__title">Vigilant — AI Civic Intelligence</span>
                             </div>
-                            <p class="work-item-row__tagline">Multimodal Content Creation & Creative Automation Pipeline</p>
+                            <div class="work-item-row__tech-chips">
+                                <span>React</span><span>Vite</span><span>Leaflet</span><span>Gemini API</span>
+                            </div>
+                            <p class="work-item-row__tagline">AI-Powered Hyperlocal Hazard Reporting System</p>
                             <p class="work-item-row__desc">
-                                Formulated an automated creative pipeline that connects campaign brief outlines directly to image generations (SDXL), ComfyUI custom controls, and voice synthesis modules.
+                                Built an intelligent civic hazard mapping platform. Utilizes Google's Gemini Vision API to instantly categorize uploaded image reports, estimate danger severity, detect submission spam, and map records on a Leaflet map.
                             </p>
 
                             <div class="work-item-row__details">
                                 <div class="detail-block">
                                     <span class="label">Problem</span>
-                                    <span class="text">Generating marketing assets requires extensive manual file movements and edits.</span>
+                                    <span class="text">Manual urban hazard reviews are slow, slowing down repair crews and dispatch systems.</span>
                                 </div>
                                 <div class="detail-block">
                                     <span class="label">Solution</span>
-                                    <span class="text">Unified automation pipelines maintaining visual consistency nodes across models.</span>
+                                    <span class="text">Automated image evaluation and severity scoring tied to public Leaflet coordinate maps.</span>
+                                </div>
+                            </div>
+
+                            <div class="work-item-row__metrics">
+                                <div class="metric-badge">
+                                    <span class="num">90%</span>
+                                    <span class="txt">Auto Classification</span>
+                                </div>
+                                <div class="metric-badge">
+                                    <span class="num">500+</span>
+                                    <span class="txt">Reports Tested</span>
                                 </div>
                             </div>
 
                             <div class="work-item-row__footer">
-                                <div class="tags">
-                                    <span>Gemini</span><span>SDXL</span><span>ComfyUI</span><span>AI Voice</span>
-                                </div>
                                 <div class="actions">
                                     <a href="https://github.com/JatinGargz" target="_blank" class="action-btn"><i class="ph ph-github-logo"></i> GitHub</a>
-                                    <button class="action-btn action-btn--primary btn-case-study" data-project="content-platform">Read Case Study <i class="ph ph-arrow-right"></i></button>
+                                    <a href="vigilant-ai.html" class="action-btn action-btn--primary">Read Case Study <i class="ph ph-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -460,13 +476,16 @@
 
                     <!-- Project 5: Movie Recommendation System -->
                     <div class="work-item-row anim-reveal">
-                        <div class="work-item-row__image-panel glow-card">
+                        <a href="movie-recommendation.html" class="work-item-row__image-panel glow-card">
                             <div class="work-item-row__glow"></div>
                             <img src="assets/movie_rec.png" alt="Movie Recommendation Web Interface Mockup" class="work-item-row__img">
-                        </div>
+                        </a>
                         <div class="work-item-row__content">
                             <div class="work-item-row__meta">
                                 <span class="work-item-row__title">Movie Recommendation Engine</span>
+                            </div>
+                            <div class="work-item-row__tech-chips">
+                                <span>Python</span><span>Scikit-Learn</span><span>Pandas</span><span>Streamlit</span>
                             </div>
                             <p class="work-item-row__tagline">Content-Based Recommendation Engine using Machine Learning</p>
                             <p class="work-item-row__desc">
@@ -484,13 +503,21 @@
                                 </div>
                             </div>
 
-                            <div class="work-item-row__footer">
-                                <div class="tags">
-                                    <span>Python</span><span>Scikit-Learn</span><span>Pandas</span><span>Streamlit</span>
+                            <div class="work-item-row__metrics">
+                                <div class="metric-badge">
+                                    <span class="num">98%</span>
+                                    <span class="txt">Content Match</span>
                                 </div>
+                                <div class="metric-badge">
+                                    <span class="num">&lt;500ms</span>
+                                    <span class="txt">Similarity API</span>
+                                </div>
+                            </div>
+
+                            <div class="work-item-row__footer">
                                 <div class="actions">
                                     <a href="https://github.com/JatinGargz" target="_blank" class="action-btn"><i class="ph ph-github-logo"></i> GitHub</a>
-                                    <button class="action-btn action-btn--primary btn-case-study" data-project="movie-rec">Read Case Study <i class="ph ph-arrow-right"></i></button>
+                                    <a href="movie-recommendation.html" class="action-btn action-btn--primary">Read Case Study <i class="ph ph-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -619,7 +646,7 @@
                         <div class="timeline-v2__node">2026</div>
                         <div class="timeline-v2__card glow-card">
                             <div class="timeline-v2__card-glow"></div>
-                            <h4>Currently Building Agentic AI</h4>
+                            <h4>Currently Building AI Agents</h4>
                             <p class="timeline-v2__org">Advanced Cognitive Systems</p>
                             <p class="timeline-v2__desc">Researching stateful multi-agent orchestrations, Model Context Protocol servers, self-healing code sandboxes, and secure container layers.</p>
                         </div>
@@ -638,10 +665,10 @@
                 </div>
 
                 <div class="research__grid">
-                    <!-- Engineering Interests -->
+                    <!-- Research Interests -->
                     <div class="research-col glow-card anim-reveal">
                         <div class="research-col__glow"></div>
-                        <h3 class="research-col__title"><i class="ph ph-microscope"></i> Engineering Interests</h3>
+                        <h3 class="research-col__title"><i class="ph ph-microscope"></i> Research Interests</h3>
                         <ul class="research-col__list">
                             <li>Autonomous AI Agents</li>
                             <li>Prompt Optimization Frameworks</li>
@@ -661,11 +688,10 @@
                         <ul class="research-col__list">
                             <li>Model Context Protocol (MCP)</li>
                             <li>Agentic AI</li>
-                            <li>Multi-Agent Systems</li>
-                            <li>AI Security</li>
                             <li>RAG Systems</li>
                             <li>AI Operating Systems</li>
-                            <li>Tool Calling</li>
+                            <li>AI Security</li>
+                            <li>Multi-Agent Systems</li>
                         </ul>
                     </div>
                 </div>
@@ -763,7 +789,7 @@
                     <h2 class="contact__title anim-reveal-up">
                         Let's Build Something<br><span class="text-accent">Intelligent Together.</span>
                     </h2>
-                    <p class="contact__desc-text anim-reveal">I'm always interested in AI engineering, research, internships, and ambitious startup ideas.</p>
+                    <p class="contact__desc-text anim-reveal">I'm always excited to discuss AI engineering, research, startup ideas, and challenging software projects.</p>
                 </div>
 
                 <div class="contact__grid">
@@ -838,7 +864,7 @@
         <div class="footer__container">
             <div class="footer__details">
                 <p class="footer__text">Designed & Engineered by <strong>Jatin Garg</strong></p>
-                <p class="footer__text">Built with HTML, CSS & JavaScript. Inspired by Linear & Vercel Design Systems.</p>
+                <p class="footer__text">Built using HTML, CSS & JavaScript. Inspired by Linear & Vercel Design Systems.</p>
             </div>
         </div>
     </footer>

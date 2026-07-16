@@ -1114,6 +1114,27 @@ li {
   color: var(--text-heading);
 }
 
+.work-item-row__tech-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.work-item-row__tech-chips span {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-subtle);
+}
+
 .work-item-row__badge {
   font-family: var(--font-heading);
   font-size: 9px;
