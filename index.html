@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jatin — AI & Full Stack Developer. Building intelligent products, AI workflows, and polished digital experiences.">
+    <meta name="keywords" content="Jatin, AI Developer, Full Stack Developer, Machine Learning, Generative AI, Portfolio, DTU, Delhi Technological University">
+    <meta name="author" content="Jatin">
+    <meta name="robots" content="index, follow">
+    <title>Jatin | AI & Full Stack Developer</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ========== LOADING SCREEN ========== -->
+    <div class="loader" id="loader">
+        <canvas class="loader__canvas" id="loaderCanvas"></canvas>
+        <div class="loader__overlay"></div>
+        <div class="loader__content">
+            <div class="loader__icon">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <!-- Neural node -->
+                    <circle cx="24" cy="24" r="4" fill="var(--accent)">
+                        <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="24" cy="24" r="4" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.4">
+                        <animate attributeName="r" values="8;16;8" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <!-- Connection lines -->
+                    <line x1="24" y1="24" x2="8" y2="8" stroke="var(--accent)" stroke-width="0.8" opacity="0.3"/>
+                    <line x1="24" y1="24" x2="40" y2="8" stroke="var(--accent)" stroke-width="0.8" opacity="0.3"/>
+                    <line x1="24" y1="24" x2="8" y2="40" stroke="var(--accent)" stroke-width="0.8" opacity="0.3"/>
+                    <line x1="24" y1="24" x2="40" y2="40" stroke="var(--accent)" stroke-width="0.8" opacity="0.3"/>
+                    <line x1="24" y1="24" x2="4" y2="24" stroke="var(--accent)" stroke-width="0.8" opacity="0.3"/>
+                    <line x1="24" y1="24" x2="44" y2="24" stroke="var(--accent)" stroke-width="0.8" opacity="0.3"/>
+                    <!-- Outer nodes -->
+                    <circle cx="8" cy="8" r="2" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="40" cy="8" r="2" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="8" cy="40" r="2" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="40" cy="40" r="2" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="4" cy="24" r="1.5" fill="var(--accent)" opacity="0.3"/>
+                    <circle cx="44" cy="24" r="1.5" fill="var(--accent)" opacity="0.3"/>
+                </svg>
+            </div>
+            <h2 class="loader__name">Jatin<span class="loader__dot">.</span></h2>
+            <div class="loader__bar-wrapper">
+                <div class="loader__bar-track">
+                    <div class="loader__bar-fill" id="loaderBar"></div>
+                </div>
+                <div class="loader__bar-info">
+                    <span class="loader__bar-label">Initializing</span>
+                    <span class="loader__bar-percent" id="loaderPercent">0%</span>
+                </div>
+            </div>
+            <p class="loader__status" id="loaderStatus">Loading neural network...</p>
+        </div>
+    </div>
+
+    <!-- ========== CUSTOM CURSOR ========== -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ========== NEURAL NETWORK CANVAS ========== -->
+    <canvas id="neuralCanvas"></canvas>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="nav" id="nav">
+        <div class="nav__container">
+            <a href="#" class="nav__logo">
+                <div class="nav__logo-icon">
+                    <i class="ph ph-brain"></i>
+                </div>
+                <span class="nav__logo-text">Jatin<span class="nav__logo-dot">.</span></span>
+            </a>
+
+            <div class="nav__links-wrapper">
+                <a href="#about" class="nav__link">
+                    <span class="nav__link-text">About</span>
+                </a>
+                <a href="#skills" class="nav__link">
+                    <span class="nav__link-text">Skills</span>
+                </a>
+                <a href="#work" class="nav__link">
+                    <span class="nav__link-text">Work</span>
+                </a>
+                <a href="#experience" class="nav__link">
+                    <span class="nav__link-text">Experience</span>
+                </a>
+                <a href="#contact" class="nav__link">
+                    <span class="nav__link-text">Contact</span>
+                </a>
+                <div class="nav__separator"></div>
+                <a href="#contact" class="nav__link nav__link--accent">
+                    <i class="ph ph-robot"></i>
+                    <span>AI Builder</span>
+                </a>
+            </div>
+
+            <button class="nav__mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== MOBILE MENU ========== -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu__links">
+            <li><a href="#about" class="mobile-menu__link">About</a></li>
+            <li><a href="#skills" class="mobile-menu__link">Skills</a></li>
+            <li><a href="#work" class="mobile-menu__link">Work</a></li>
+            <li><a href="#experience" class="mobile-menu__link">Experience</a></li>
+            <li><a href="#contact" class="mobile-menu__link">Contact</a></li>
+        </ul>
+    </div>
+
+    <main id="mainContent">
+
+        <!-- ========== HERO / ABOUT SECTION ========== -->
+        <section class="hero" id="about">
+            <div class="hero__neural-bg"></div>
+            <div class="hero__left-line"></div>
+
+            <div class="hero__container">
+                <div class="hero__badge anim-reveal">
+                    <div class="hero__badge-icon">
+                        <span class="hero__badge-initials">JT</span>
+                    </div>
+                    <span class="hero__badge-text">Portfolio — AI & Development</span>
+                </div>
+
+                <h1 class="hero__title">
+                    <div class="hero__title-line anim-reveal-up">
+                        <span>BUILDING</span>
+                    </div>
+                    <div class="hero__title-line anim-reveal-up">
+                        <span>INTELLIGENT</span>
+                    </div>
+                    <div class="hero__title-line anim-reveal-up">
+                        <span>PRODUCTS WITH</span>
+                    </div>
+                    <div class="hero__title-line anim-reveal-up">
+                        <span>AI &</span>
+                        <span class="hero__title-accent"> CODE</span><span class="hero__title-accent">,</span>
+                    </div>
+                    <div class="hero__title-line anim-reveal-up">
+                        <span>ENGINEERING</span>
+                    </div>
+                    <div class="hero__title-line anim-reveal-up">
+                        <span>THE</span>
+                        <span class="hero__title-accent"> FUTURE.</span>
+                    </div>
+                </h1>
+
+                <div class="hero__bottom anim-reveal">
+                    <p class="hero__description">
+                        AI & Full Stack Developer based in Delhi — building AI-powered products,
+                        intelligent workflows, and polished digital experiences at the intersection
+                        of machine intelligence and engineering.
+                    </p>
+                    <div class="hero__ctas">
+                        <a href="#work" class="hero__cta-link hero__cta-link--accent">
+                            <span class="hero__cta-line"></span>
+                            View Projects
+                        </a>
+                        <a href="#contact" class="hero__cta-link">
+                            <span class="hero__cta-line"></span>
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SKILLS / TECHNICAL STACK ========== -->
+        <section class="skills" id="skills">
+            <div class="skills__container">
+                <div class="skills__header">
+                    <div class="section-label anim-reveal">
+                        <span class="section-label__num">01</span>
+                        <span class="section-label__text">Skills</span>
+                        <span class="section-label__line"></span>
+                    </div>
+                    <div class="skills__header-row">
+                        <h2 class="skills__title anim-reveal-up">
+                            Technical<br><span class="text-accent">Stack.</span>
+                        </h2>
+                        <p class="skills__subtitle anim-reveal">
+                            From AI models to full-stack frameworks — building across the entire intelligence pipeline.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="skills__grid">
+                    <!-- Card 01: AI & Generative AI (Featured) -->
+                    <div class="skill-card skill-card--featured skill-card--wide anim-reveal" aria-label="Skill Card">
+                        <span class="skill-card__accent-line"></span>
+                        <div class="skill-card__glow"></div>
+                        <span class="skill-card__number">01</span>
+                        <div class="skill-card__header">
+                            <p class="skill-card__category skill-card__category--accent">AI & Generative AI</p>
+                            <p class="skill-card__desc">Core focus — building intelligent products with LLMs, generative models, and AI automation pipelines.</p>
+                        </div>
+                        <div class="skill-card__tags">
+                            <span class="skill-tag skill-tag--accent">LLM APIs</span>
+                            <span class="skill-tag skill-tag--accent">Prompt Engineering</span>
+                            <span class="skill-tag skill-tag--accent">AI Agents</span>
+                            <span class="skill-tag skill-tag--accent">RAG</span>
+                            <span class="skill-tag skill-tag--accent">AI Workflow Design</span>
+                            <span class="skill-tag skill-tag--accent">AI Automation</span>
+                            <span class="skill-tag skill-tag--accent">AI Image Gen</span>
+                            <span class="skill-tag skill-tag--accent">AI Video Gen</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 02: AI Models -->
+                    <div class="skill-card anim-reveal" aria-label="Skill Card">
+                        <span class="skill-card__accent-line"></span>
+                        <span class="skill-card__number">02</span>
+                        <div class="skill-card__header">
+                            <p class="skill-card__category">AI Models & Platforms</p>
+                        </div>
+                        <div class="skill-card__tags">
+                            <span class="skill-tag">GPT</span>
+                            <span class="skill-tag">Claude</span>
+                            <span class="skill-tag">Gemini</span>
+                            <span class="skill-tag">Google AI Studio</span>
+                            <span class="skill-tag">Vertex AI</span>
+                            <span class="skill-tag">Stable Diffusion</span>
+                            <span class="skill-tag">ComfyUI</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 03: Languages -->
+                    <div class="skill-card anim-reveal" aria-label="Skill Card">
+                        <span class="skill-card__accent-line"></span>
+                        <span class="skill-card__number">03</span>
+                        <div class="skill-card__header">
+                            <p class="skill-card__category">Languages</p>
+                        </div>
+                        <div class="skill-card__tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">C</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 04: Machine Learning (Featured) -->
+                    <div class="skill-card skill-card--featured skill-card--wide anim-reveal" aria-label="Skill Card">
+                        <span class="skill-card__accent-line"></span>
+                        <div class="skill-card__glow"></div>
+                        <span class="skill-card__number">04</span>
+                        <div class="skill-card__header">
+                            <p class="skill-card__category skill-card__category--accent">Machine Learning</p>
+                            <p class="skill-card__desc">Building predictive models, recommendation systems, and data-driven applications.</p>
+                        </div>
+                        <div class="skill-card__tags">
+                            <span class="skill-tag skill-tag--accent">Scikit-Learn</span>
+                            <span class="skill-tag skill-tag--accent">Pandas</span>
+                            <span class="skill-tag skill-tag--accent">NumPy</span>
+                            <span class="skill-tag skill-tag--accent">TF-IDF</span>
+                            <span class="skill-tag skill-tag--accent">Logistic Regression</span>
+                            <span class="skill-tag skill-tag--accent">Decision Trees</span>
+                            <span class="skill-tag skill-tag--accent">KNN</span>
+                            <span class="skill-tag skill-tag--accent">Feature Engineering</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 05: Frameworks & Web -->
+                    <div class="skill-card anim-reveal" aria-label="Skill Card">
+                        <span class="skill-card__accent-line"></span>
+                        <span class="skill-card__number">05</span>
+                        <div class="skill-card__header">
+                            <p class="skill-card__category">Frameworks & Web</p>
+                        </div>
+                        <div class="skill-card__tags">
+                            <span class="skill-tag">Streamlit</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">REST APIs</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Supabase</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 06: Tools & Cloud -->
+                    <div class="skill-card anim-reveal" aria-label="Skill Card">
+                        <span class="skill-card__accent-line"></span>
+                        <span class="skill-card__number">06</span>
+                        <div class="skill-card__header">
+                            <p class="skill-card__category">Tools & Cloud</p>
+                        </div>
+                        <div class="skill-card__tags">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">GCP</span>
+                            <span class="skill-tag">Cursor</span>
+                            <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Premiere Pro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PROJECTS / WORK ========== -->
+        <section class="work" id="work">
+            <div class="work__container">
+                <div class="work__header">
+                    <div class="section-label anim-reveal">
+                        <span class="section-label__num">02</span>
+                        <span class="section-label__text">Work</span>
+                        <span class="section-label__line"></span>
+                    </div>
+                    <h2 class="work__title anim-reveal-up">
+                        Featured<br><span class="text-accent">Projects.</span>
+                    </h2>
+                </div>
+
+                <div class="work__grid">
+                    <!-- Project 1: Fedora AI OS (Featured - Full Width) -->
+                    <div class="project-card project-card--featured anim-reveal" data-category="ai">
+                        <div class="project-card__glow"></div>
+                        <div class="project-card__image">
+                            <div class="mock-terminal">
+                                <div class="mock-terminal__header">
+                                    <span class="mock-terminal__dot red"></span>
+                                    <span class="mock-terminal__dot yellow"></span>
+                                    <span class="mock-terminal__dot green"></span>
+                                    <span class="mock-terminal__title">fedora-ai-os@agent-01:~</span>
+                                </div>
+                                <div class="mock-terminal__body">
+                                    <p class="mock-terminal__line cmd">$ fedora-ai-init --secure</p>
+                                    <p class="mock-terminal__line success">[OK] Booting AI Sandbox Isolation Layer...</p>
+                                    <p class="mock-terminal__line info">[INFO] Mounting rootless Podman overlayfs...</p>
+                                    <p class="mock-terminal__line info">[INFO] SELinux policies applied (Agent Level)...</p>
+                                    <p class="mock-terminal__line prompt">Agent workflow active. Listening...</p>
+                                </div>
+                            </div>
+                            <div class="project-card__image-overlay"></div>
+                        </div>
+                        <div class="project-card__content">
+                            <div class="project-card__meta">
+                                <span class="project-card__label">AI Operating System</span>
+                                <span class="project-card__label">Flagship</span>
+                            </div>
+                            <h3 class="project-card__title">Fedora AI OS</h3>
+                            <p class="project-card__tagline">AI-Native Secure Operating System for Autonomous AI Agents</p>
+                            <p class="project-card__desc">Designed and developed a security-first AI operating system layer on top of Fedora Linux to enable autonomous AI agents to interact with the host system safely. AI agents execute inside isolated environments with durable workflows, automated recovery mechanisms, and strict security policies.</p>
+                            <ul class="project-card__contributions">
+                                <li>Architected a secure AI orchestration layer integrated with Fedora Linux</li>
+                                <li>Developed durable LangGraph workflows with checkpoint-based recovery</li>
+                                <li>Executed AI agents inside rootless Podman containers for complete isolation</li>
+                                <li>Leveraged SELinux policies to enforce secure system-level permissions</li>
+                            </ul>
+                            <div class="project-card__tags">
+                                <span>Python</span><span>LangGraph</span><span>SELinux</span><span>Podman</span><span>Linux (Fedora)</span>
+                            </div>
+                            <div class="project-card__links">
+                                <a href="#" class="project-card__link"><i class="ph ph-arrow-square-out"></i> View Project</a>
+                                <a href="#" class="project-card__link"><i class="ph ph-github-logo"></i> Source</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Vigilant -->
+                    <div class="project-card anim-reveal" data-category="ai">
+                        <div class="project-card__glow"></div>
+                        <div class="project-card__image">
+                            <div class="mock-map">
+                                <div class="mock-map__radar"></div>
+                                <div class="mock-map__grid"></div>
+                                <div class="mock-map__node pulse-node" style="top:30%; left:45%;">
+                                    <span class="tooltip">Pothole (Critical)</span>
+                                </div>
+                                <div class="mock-map__node pulse-node secondary" style="top:60%; left:70%;">
+                                    <span class="tooltip">Road Damage (Muted)</span>
+                                </div>
+                                <div class="mock-map__info">
+                                    <span class="lat-lng">LAT: 28.6139° N, LNG: 77.2090° E</span>
+                                </div>
+                            </div>
+                            <div class="project-card__image-overlay"></div>
+                        </div>
+                        <div class="project-card__content">
+                            <div class="project-card__meta">
+                                <span class="project-card__label">AI Civic Tech</span>
+                            </div>
+                            <h3 class="project-card__title">Vigilant — AI Civic Intelligence</h3>
+                            <p class="project-card__tagline">AI-Powered Hyperlocal Hazard Reporting System</p>
+                            <p class="project-card__desc">Intelligent civic engagement platform enabling users to report infrastructure issues. Utilizes Gemini API to analyze uploaded images, classify incidents, estimate severity, and present reports on an interactive city-wide dashboard.</p>
+                            <ul class="project-card__contributions">
+                                <li>Integrated Gemini API for AI-powered image understanding</li>
+                                <li>Built interactive location-based reporting using Leaflet maps</li>
+                                <li>Designed real-time dashboards and community leaderboards</li>
+                                <li>Implemented duplicate detection and anti-spam mechanisms</li>
+                            </ul>
+                            <div class="project-card__tags">
+                                <span>React</span><span>Vite</span><span>Leaflet</span><span>Gemini API</span>
+                            </div>
+                            <div class="project-card__links">
+                                <a href="#" class="project-card__link"><i class="ph ph-arrow-square-out"></i> Live Demo</a>
+                                <a href="#" class="project-card__link"><i class="ph ph-github-logo"></i> Source</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Ghost Employee AI -->
+                    <div class="project-card anim-reveal" data-category="ai">
+                        <div class="project-card__glow"></div>
+                        <div class="project-card__image">
+                            <div class="mock-dashboard">
+                                <div class="mock-dashboard__sidebar"></div>
+                                <div class="mock-dashboard__main">
+                                    <div class="mock-dashboard__row header">
+                                        <span class="title">Workforce Analytics</span>
+                                    </div>
+                                    <div class="mock-dashboard__stats">
+                                        <div class="stat-box">
+                                            <span class="label">Productivity</span>
+                                            <div class="bar-fill" style="width: 82%"></div>
+                                        </div>
+                                        <div class="stat-box">
+                                            <span class="label">AI Auto-Summary</span>
+                                            <div class="dots-load">
+                                                <span></span><span></span><span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-card__image-overlay"></div>
+                        </div>
+                        <div class="project-card__content">
+                            <div class="project-card__meta">
+                                <span class="project-card__label">AI Analytics</span>
+                            </div>
+                            <h3 class="project-card__title">Ghost Employee AI</h3>
+                            <p class="project-card__tagline">AI-Powered Workforce Analytics & Productivity Platform</p>
+                            <p class="project-card__desc">Intelligent workforce analytics platform that transforms raw employee activity logs into structured productivity insights using LLMs. Automates performance analysis, generates AI-powered summaries, and visualizes work activity.</p>
+                            <ul class="project-card__contributions">
+                                <li>Built responsive dashboards for employee performance analytics</li>
+                                <li>Integrated Gemini API for automated activity analysis</li>
+                                <li>Generated AI-powered productivity summaries and reports</li>
+                                <li>Developed interactive timeline visualizations</li>
+                            </ul>
+                            <div class="project-card__tags">
+                                <span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Gemini API</span>
+                            </div>
+                            <div class="project-card__links">
+                                <a href="#" class="project-card__link"><i class="ph ph-arrow-square-out"></i> Live Demo</a>
+                                <a href="#" class="project-card__link"><i class="ph ph-github-logo"></i> Source</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: AI Content Generation Platform (Featured) -->
+                    <div class="project-card project-card--featured anim-reveal" data-category="ai">
+                        <div class="project-card__glow"></div>
+                        <div class="project-card__image">
+                            <div class="mock-canvas">
+                                <div class="mock-canvas__node" style="top:15%; left:15%;">
+                                    <i class="ph ph-text-t"></i>
+                                    <span>Prompt</span>
+                                </div>
+                                <div class="mock-canvas__node featured" style="top:45%; left:50%;">
+                                    <i class="ph ph-sparkle"></i>
+                                    <span>SDXL Turbo</span>
+                                </div>
+                                <div class="mock-canvas__node" style="top:75%; left:80%;">
+                                    <i class="ph ph-video-camera"></i>
+                                    <span>Video Gen</span>
+                                </div>
+                                <svg class="mock-canvas__lines">
+                                    <line x1="25%" y1="25%" x2="50%" y2="50%" stroke="rgba(0, 212, 255, 0.2)" stroke-width="1.5" stroke-dasharray="4"/>
+                                    <line x1="50%" y1="50%" x2="75%" y2="75%" stroke="rgba(0, 212, 255, 0.2)" stroke-width="1.5" stroke-dasharray="4"/>
+                                </svg>
+                            </div>
+                            <div class="project-card__image-overlay"></div>
+                        </div>
+                        <div class="project-card__content">
+                            <div class="project-card__meta">
+                                <span class="project-card__label">Generative AI</span>
+                                <span class="project-card__label">Multimodal</span>
+                            </div>
+                            <h3 class="project-card__title">AI Content Generation Platform</h3>
+                            <p class="project-card__tagline">Multimodal Content Creation & Creative Automation Pipeline</p>
+                            <p class="project-card__desc">End-to-end AI content generation pipeline producing marketing creatives, product advertisements, promotional videos, and social media assets. Integrates multiple generative AI models into a unified workflow emphasizing automation and visual consistency.</p>
+                            <ul class="project-card__contributions">
+                                <li>Designed reusable prompt engineering frameworks for consistent outputs</li>
+                                <li>Built visual consistency workflows across multiple image generations</li>
+                                <li>Generated AI-powered advertisements and branded marketing creatives</li>
+                                <li>Developed image-to-video generation workflows</li>
+                                <li>Optimized multimodal workflows for scalable creative production</li>
+                            </ul>
+                            <div class="project-card__tags">
+                                <span>Gemini</span><span>Google AI Studio</span><span>Stable Diffusion XL</span><span>ComfyUI</span><span>Prompt Engineering</span>
+                            </div>
+                            <div class="project-card__links">
+                                <a href="#" class="project-card__link"><i class="ph ph-arrow-square-out"></i> View Project</a>
+                                <a href="#" class="project-card__link"><i class="ph ph-github-logo"></i> Source</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: Movie Recommendation System -->
+                    <div class="project-card anim-reveal" data-category="ml">
+                        <div class="project-card__glow"></div>
+                        <div class="project-card__image">
+                            <div class="mock-rec">
+                                <div class="mock-rec__card" style="transform: rotate(-6deg) translateX(-40px);">
+                                    <div class="title">Inception</div>
+                                    <span class="badge">98% Match</span>
+                                </div>
+                                <div class="mock-rec__card active">
+                                    <div class="title">Interstellar</div>
+                                    <span class="badge active">99% Match</span>
+                                </div>
+                                <div class="mock-rec__card" style="transform: rotate(6deg) translateX(40px);">
+                                    <div class="title">The Matrix</div>
+                                    <span class="badge">96% Match</span>
+                                </div>
+                            </div>
+                            <div class="project-card__image-overlay"></div>
+                        </div>
+                        <div class="project-card__content">
+                            <div class="project-card__meta">
+                                <span class="project-card__label">Machine Learning</span>
+                            </div>
+                            <h3 class="project-card__title">Movie Recommendation System</h3>
+                            <p class="project-card__tagline">Content-Based Recommendation Engine using Machine Learning</p>
+                            <p class="project-card__desc">Personalized movie recommendation engine using NLP and content-based filtering. Analyzes movie metadata through TF-IDF vectorization and cosine similarity to recommend similar titles with an interactive web interface.</p>
+                            <ul class="project-card__contributions">
+                                <li>Implemented TF-IDF vectorization for feature extraction</li>
+                                <li>Applied cosine similarity for recommendation generation</li>
+                                <li>Developed an interactive Streamlit web application</li>
+                                <li>Optimized similarity search for large movie datasets</li>
+                            </ul>
+                            <div class="project-card__tags">
+                                <span>Python</span><span>Scikit-Learn</span><span>Pandas</span><span>NumPy</span><span>Streamlit</span>
+                            </div>
+                            <div class="project-card__links">
+                                <a href="#" class="project-card__link"><i class="ph ph-arrow-square-out"></i> Live Demo</a>
+                                <a href="#" class="project-card__link"><i class="ph ph-github-logo"></i> Source</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: AI Workflow & Automation Lab -->
+                    <div class="project-card anim-reveal" data-category="ai">
+                        <div class="project-card__glow"></div>
+                        <div class="project-card__image">
+                            <div class="mock-graph">
+                                <div class="mock-graph__node" style="top: 50%; left: 15%;">
+                                    <i class="ph ph-user"></i>
+                                    <span>User</span>
+                                </div>
+                                <div class="mock-graph__node" style="top: 20%; left: 50%;">
+                                    <i class="ph ph-robot"></i>
+                                    <span>Supervisor</span>
+                                </div>
+                                <div class="mock-graph__node" style="top: 80%; left: 50%;">
+                                    <i class="ph ph-wrench"></i>
+                                    <span>Tool Node</span>
+                                </div>
+                                <div class="mock-graph__node" style="top: 50%; left: 85%;">
+                                    <i class="ph ph-check"></i>
+                                    <span>Output</span>
+                                </div>
+                            </div>
+                            <div class="project-card__image-overlay"></div>
+                        </div>
+                        <div class="project-card__content">
+                            <div class="project-card__meta">
+                                <span class="project-card__label">AI Research</span>
+                                <span class="project-card__label">Ongoing</span>
+                            </div>
+                            <h3 class="project-card__title">AI Workflow & Automation Lab</h3>
+                            <p class="project-card__tagline">Experimental Platform for AI Agents, LLM Workflows & Automation</p>
+                            <p class="project-card__desc">Ongoing research and experimentation project focused on building modular AI workflows for reasoning, automation, and multimodal content generation. A testing ground for AI agents, prompt engineering, and next-gen AI products.</p>
+                            <ul class="project-card__contributions">
+                                <li>Designed reusable AI workflow architectures</li>
+                                <li>Experimented with multi-agent orchestration using LangGraph</li>
+                                <li>Built modular prompt engineering frameworks</li>
+                                <li>Integrated external AI APIs for automation workflows</li>
+                            </ul>
+                            <div class="project-card__tags">
+                                <span>Python</span><span>LangGraph</span><span>Gemini API</span><span>OpenAI API</span><span>Google AI Studio</span>
+                            </div>
+                            <div class="project-card__links">
+                                <a href="#" class="project-card__link"><i class="ph ph-arrow-square-out"></i> View Project</a>
+                                <a href="#" class="project-card__link"><i class="ph ph-github-logo"></i> Source</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Notable Projects -->
+                <div class="other-projects anim-reveal">
+                    <h3 class="other-projects__title">
+                        <i class="ph ph-folder-open"></i>
+                        Other Notable Projects
+                    </h3>
+                    <div class="other-projects__grid">
+                        <div class="other-project-card glow-card">
+                            <div class="other-project-card__glow"></div>
+                            <h4 class="other-project-card__title">Resume Analyzer</h4>
+                            <p class="other-project-card__desc">AI-assisted resume evaluation using NLP to extract skills and provide ATS-friendly improvement suggestions.</p>
+                            <div class="other-project-card__tags">
+                                <span>Python</span><span>NLP</span><span>LLM API</span>
+                            </div>
+                        </div>
+                        <div class="other-project-card glow-card">
+                            <div class="other-project-card__glow"></div>
+                            <h4 class="other-project-card__title">Student Performance Prediction</h4>
+                            <p class="other-project-card__desc">ML model for predicting academic performance using supervised learning and educational datasets.</p>
+                            <div class="other-project-card__tags">
+                                <span>Python</span><span>Scikit-Learn</span><span>Data Analysis</span>
+                            </div>
+                        </div>
+                        <div class="other-project-card glow-card">
+                            <div class="other-project-card__glow"></div>
+                            <h4 class="other-project-card__title">Carbon Footprint Tracker</h4>
+                            <p class="other-project-card__desc">Sustainability-focused hackathon application to estimate and visualize environmental impact.</p>
+                            <div class="other-project-card__tags">
+                                <span>JavaScript</span><span>Data Viz</span><span>SIH</span>
+                            </div>
+                        </div>
+                        <div class="other-project-card glow-card">
+                            <div class="other-project-card__glow"></div>
+                            <h4 class="other-project-card__title">Backend Infra @ Woohl</h4>
+                            <p class="other-project-card__desc">Scalable REST APIs, database optimization, middleware implementation, and automated developer workflows.</p>
+                            <div class="other-project-card__tags">
+                                <span>Node.js</span><span>REST API</span><span>MongoDB</span>
+                            </div>
+                        </div>
+                        <div class="other-project-card glow-card">
+                            <div class="other-project-card__glow"></div>
+                            <h4 class="other-project-card__title">Generative AI Experiments</h4>
+                            <p class="other-project-card__desc">Extensive experimentation with Gemini, Stable Diffusion, ComfyUI, and multimodal AI for content generation & automation.</p>
+                            <div class="other-project-card__tags">
+                                <span>Gemini</span><span>SDXL</span><span>ComfyUI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== EXPERIENCE ========== -->
+        <section class="experience" id="experience">
+            <div class="experience__container">
+                <div class="experience__header">
+                    <div class="section-label anim-reveal">
+                        <span class="section-label__num">03</span>
+                        <span class="section-label__text">Experience</span>
+                        <span class="section-label__line"></span>
+                    </div>
+                    <h2 class="experience__title anim-reveal-up">
+                        Journey<br><span class="text-accent">So Far.</span>
+                    </h2>
+                </div>
+
+                <div class="timeline">
+                    <!-- Education -->
+                    <div class="timeline__item anim-reveal">
+                        <div class="timeline__dot"></div>
+                        <div class="timeline__card glow-card">
+                            <div class="timeline__card-glow"></div>
+                            <span class="timeline__date">2024 — Present</span>
+                            <h3 class="timeline__title">B.Tech Computer Science Engineering</h3>
+                            <p class="timeline__org">Delhi Technological University (DTU)</p>
+                            <p class="timeline__detail">2nd Year • 8.8 SGPA (First Year)</p>
+                            <p class="timeline__desc">Pursuing Computer Science with focus on AI/ML, building real AI products and intelligent automation systems alongside academics.</p>
+                        </div>
+                    </div>
+
+                    <!-- Intern 1 -->
+                    <div class="timeline__item anim-reveal">
+                        <div class="timeline__dot timeline__dot--accent"></div>
+                        <div class="timeline__card glow-card">
+                            <div class="timeline__card-glow"></div>
+                            <span class="timeline__date">Internship</span>
+                            <h3 class="timeline__title">AI & Web Development Intern</h3>
+                            <p class="timeline__org">Woohl — Early Stage Startup</p>
+                            <p class="timeline__desc">Backend development, marketplace features, product catalog management, AI workflow discussions, and website improvements. Hands-on startup experience with product development.</p>
+                        </div>
+                    </div>
+
+                    <!-- Intern 2 -->
+                    <div class="timeline__item anim-reveal">
+                        <div class="timeline__dot timeline__dot--accent"></div>
+                        <div class="timeline__card glow-card">
+                            <div class="timeline__card-glow"></div>
+                            <span class="timeline__date">Internship</span>
+                            <h3 class="timeline__title">Growth & Content Intern</h3>
+                            <p class="timeline__org">Startup Marketing</p>
+                            <p class="timeline__desc">Short-form content creation, creative workflows, AI-assisted content generation, startup marketing strategies, and brand communication.</p>
+                        </div>
+                    </div>
+
+                    <!-- Research -->
+                    <div class="timeline__item anim-reveal">
+                        <div class="timeline__dot"></div>
+                        <div class="timeline__card glow-card">
+                            <div class="timeline__card-glow"></div>
+                            <span class="timeline__date">Research</span>
+                            <h3 class="timeline__title">Autonomous Robotics Research</h3>
+                            <p class="timeline__org">Independent Technical Research</p>
+                            <p class="timeline__desc">Researched autonomous navigation, IoT integration, cloud architecture, remote monitoring, sensor fusion, fleet management, and robotics software stacks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== ABOUT DETAIL / PHILOSOPHY ========== -->
+        <section class="about-detail" id="about-detail">
+            <div class="about-detail__container">
+                <div class="section-label anim-reveal">
+                    <span class="section-label__num">04</span>
+                    <span class="section-label__text">Philosophy</span>
+                    <span class="section-label__line"></span>
+                </div>
+                <div class="about-detail__content anim-reveal">
+                    <blockquote class="about-detail__quote">
+                        "AI is becoming a new layer of software engineering. My goal is to build products where machine intelligence, automation, and thoughtful user experience come together to solve real-world problems."
+                    </blockquote>
+                    <div class="about-detail__interests">
+                        <h3 class="about-detail__interests-title">What I'm Building Towards</h3>
+                        <div class="about-detail__interest-tags">
+                            <span class="interest-tag">AI Startups</span>
+                            <span class="interest-tag">Production AI Products</span>
+                            <span class="interest-tag">Large-Scale AI Systems</span>
+                            <span class="interest-tag">Generative AI Mastery</span>
+                            <span class="interest-tag">AI Research Contributions</span>
+                            <span class="interest-tag">Products Used by Millions</span>
+                        </div>
+                    </div>
+                    <div class="about-detail__currently">
+                        <h3 class="about-detail__interests-title">Currently Exploring</h3>
+                        <div class="about-detail__interest-tags">
+                            <span class="interest-tag interest-tag--glow">AI Agents</span>
+                            <span class="interest-tag interest-tag--glow">Advanced Prompt Engineering</span>
+                            <span class="interest-tag interest-tag--glow">MERN Stack</span>
+                            <span class="interest-tag interest-tag--glow">System Design</span>
+                            <span class="interest-tag interest-tag--glow">Cloud AI</span>
+                            <span class="interest-tag interest-tag--glow">LLM Applications</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CONTACT ========== -->
+        <section class="contact" id="contact">
+            <div class="contact__container">
+                <div class="contact__header">
+                    <div class="section-label anim-reveal">
+                        <span class="section-label__num">05</span>
+                        <span class="section-label__text">Contact</span>
+                        <span class="section-label__line"></span>
+                    </div>
+                    <h2 class="contact__title anim-reveal-up">
+                        Let's Build<br><span class="text-accent">Together.</span>
+                    </h2>
+                    <p class="contact__subtitle anim-reveal">Have a project idea, internship opportunity, or want to discuss AI? Let's connect.</p>
+                </div>
+
+                <div class="contact__grid">
+                    <div class="contact__info anim-reveal">
+                        <a href="mailto:gargjatin941@gmail.com" class="contact-card glow-card">
+                            <div class="contact-card__glow"></div>
+                            <i class="ph ph-envelope-simple"></i>
+                            <div>
+                                <span class="contact-card__label">Email</span>
+                                <span class="contact-card__value">gargjatin941@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/JatinGargz" target="_blank" rel="noopener noreferrer" class="contact-card glow-card">
+                            <div class="contact-card__glow"></div>
+                            <i class="ph ph-github-logo"></i>
+                            <div>
+                                <span class="contact-card__label">GitHub</span>
+                                <span class="contact-card__value">github.com/JatinGargz</span>
+                            </div>
+                        </a>
+                        <a href="https://linkedin.com/in/jatingargz" target="_blank" rel="noopener noreferrer" class="contact-card glow-card">
+                            <div class="contact-card__glow"></div>
+                            <i class="ph ph-linkedin-logo"></i>
+                            <div>
+                                <span class="contact-card__label">LinkedIn</span>
+                                <span class="contact-card__value">linkedin.com/in/jatingargz</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <form class="contact__form anim-reveal" id="contactForm" novalidate>
+                        <div class="form-group">
+                            <input type="text" id="formName" class="form-input" placeholder=" " required>
+                            <label for="formName" class="form-label">Your Name</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="formEmail" class="form-input" placeholder=" " required>
+                            <label for="formEmail" class="form-label">Your Email</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="formMessage" class="form-input form-textarea" placeholder=" " required rows="5"></textarea>
+                            <label for="formMessage" class="form-label">Your Message</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <button type="submit" class="btn btn--primary">
+                            <span>Send Message</span>
+                            <i class="ph ph-paper-plane-tilt"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer__container">
+            <p class="footer__text">Designed & Built by <strong>Jatin</strong> &copy; <span id="currentYear"></span></p>
+            <div class="footer__links">
+                <a href="https://github.com/JatinGargz" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
+                <a href="https://linkedin.com/in/jatingargz" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                <a href="mailto:gargjatin941@gmail.com" aria-label="Email"><i class="ph ph-envelope-simple"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
