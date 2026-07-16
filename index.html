@@ -38,7 +38,7 @@
                     <span class="loader__bar-percent" id="loaderPercent">0%</span>
                 </div>
             </div>
-            <p class="loader__status" id="loaderStatus">Loading neural network...</p>
+            <p class="loader__status" id="loaderStatus">Loading sandbox environment...</p>
         </div>
     </div>
 
@@ -80,7 +80,7 @@
                 <a href="#about" class="nav__link"><span class="nav__link-text">About</span></a>
                 <a href="#skills" class="nav__link"><span class="nav__link-text">Skills</span></a>
                 <a href="#work" class="nav__link"><span class="nav__link-text">Projects</span></a>
-                <a href="#experience" class="nav__link"><span class="nav__link-text">Experience</span></a>
+                <a href="#experience" class="nav__link"><span class="nav__link-text">Timeline</span></a>
                 <a href="#contact" class="nav__link"><span class="nav__link-text">Contact</span></a>
                 <div class="nav__separator"></div>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
@@ -100,7 +100,7 @@
             <li><a href="#about" class="mobile-menu__link">About</a></li>
             <li><a href="#skills" class="mobile-menu__link">Skills</a></li>
             <li><a href="#work" class="mobile-menu__link">Projects</a></li>
-            <li><a href="#experience" class="mobile-menu__link">Experience</a></li>
+            <li><a href="#experience" class="mobile-menu__link">Timeline</a></li>
             <li><a href="#contact" class="mobile-menu__link">Contact</a></li>
         </ul>
     </div>
@@ -113,10 +113,6 @@
             <div class="hero__left-line"></div>
 
             <div class="hero__container">
-                <div class="hero__badge anim-reveal">
-                    <span class="hero__badge-text">AI Engineer | Full Stack Developer | Generative AI Builder</span>
-                </div>
-
                 <h1 class="hero__title">
                     <div class="hero__title-line anim-reveal-up">
                         <span>Building AI Products</span>
@@ -129,19 +125,24 @@
                     </div>
                 </h1>
 
+                <p class="hero__val-prop anim-reveal">
+                    I design and build AI-powered software, autonomous workflows, and intelligent applications by combining LLMs, machine learning, and modern software engineering.
+                </p>
+
+                <!-- Social Proof Badges -->
+                <div class="hero__social-proof anim-reveal">
+                    <span class="proof-badge"><i class="ph ph-student"></i> 2nd Year @ DTU</span>
+                    <span class="proof-badge"><i class="ph ph-terminal"></i> Backend Developer @ Woohl</span>
+                    <span class="proof-badge"><i class="ph ph-certificate"></i> 8.8 CGPA</span>
+                    <span class="proof-badge"><i class="ph ph-robot"></i> 6+ AI Projects</span>
+                </div>
+
                 <div class="hero__bottom anim-reveal">
-                    <p class="hero__description">
-                        I build AI-powered applications, intelligent automation systems, and full-stack products by combining Large Language Models, Machine Learning, and modern web technologies. I enjoy transforming cutting-edge AI research into practical products used by real people.
-                    </p>
-                    <div class="hero__ctas">
-                        <a href="#work" class="hero__cta-link hero__cta-link--accent">
-                            <span class="hero__cta-line"></span>
-                            Case Studies
-                        </a>
-                        <a href="#contact" class="hero__cta-link">
-                            <span class="hero__cta-line"></span>
-                            Collab
-                        </a>
+                    <div class="hero__ctas-revamp">
+                        <a href="#work" class="btn btn--primary"><i class="ph ph-arrow-down"></i> View Projects</a>
+                        <a href="#" class="btn btn--secondary" download><i class="ph ph-file-pdf"></i> Resume</a>
+                        <a href="https://github.com/JatinGargz" target="_blank" rel="noopener noreferrer" class="btn btn--secondary"><i class="ph ph-github-logo"></i> GitHub</a>
+                        <a href="https://linkedin.com/in/jatingargz" target="_blank" rel="noopener noreferrer" class="btn btn--secondary"><i class="ph ph-linkedin-logo"></i> LinkedIn</a>
                     </div>
                 </div>
             </div>
@@ -166,7 +167,7 @@
                             <div class="philosophy-card__glow"></div>
                             <span class="philosophy-card__title">Engineering Philosophy</span>
                             <p class="philosophy-card__text">
-                                I believe AI should augment people rather than replace them. I enjoy designing systems that combine reliable software engineering with modern machine learning to create products that are both intelligent and practical.
+                                I enjoy building intelligent systems that combine reliable software engineering with modern AI. My focus is creating products that are practical, scalable, and secure rather than simply showcasing new models.
                             </p>
                         </div>
                     </div>
@@ -192,143 +193,63 @@
             </div>
         </section>
 
-        <!-- ========== FEATURED TECHNOLOGIES ========== -->
-        <section class="tech-cards">
+        <!-- ========== CORE STACK SECTION ========== -->
+        <section class="tech-cards" id="skills">
             <div class="section__container">
                 <div class="section-label anim-reveal">
                     <span class="section-label__num">02</span>
-                    <span class="section-label__text">Featured Areas</span>
+                    <span class="section-label__text">Core Stack</span>
                     <span class="section-label__line"></span>
                 </div>
 
-                <div class="tech-cards__grid">
-                    <div class="tech-card glow-card anim-reveal">
-                        <div class="tech-card__glow"></div>
-                        <i class="ph ph-robot"></i>
-                        <h4>AI Agents</h4>
-                    </div>
-                    <div class="tech-card glow-card anim-reveal">
-                        <div class="tech-card__glow"></div>
+                <div class="tech-cards__grid-revamp">
+                    <div class="tech-card-large glow-card anim-reveal">
+                        <div class="tech-card-large__glow"></div>
                         <i class="ph ph-brain"></i>
                         <h4>LLMs</h4>
+                        <p>GPT-4o, Claude 3.5, Gemini 1.5 Pro</p>
                     </div>
-                    <div class="tech-card glow-card anim-reveal">
-                        <div class="tech-card__glow"></div>
+                    <div class="tech-card-large glow-card anim-reveal">
+                        <div class="tech-card-large__glow"></div>
                         <i class="ph ph-git-fork"></i>
                         <h4>LangGraph</h4>
+                        <p>Stateful multi-agent workflows</p>
                     </div>
-                    <div class="tech-card glow-card anim-reveal">
-                        <div class="tech-card__glow"></div>
-                        <i class="ph ph-chart-line"></i>
-                        <h4>Machine Learning</h4>
+                    <div class="tech-card-large glow-card anim-reveal">
+                        <div class="tech-card-large__glow"></div>
+                        <i class="ph ph-sparkle"></i>
+                        <h4>Gemini</h4>
+                        <p>Multimodal vision & classification APIs</p>
                     </div>
-                    <div class="tech-card glow-card anim-reveal">
-                        <div class="tech-card__glow"></div>
-                        <i class="ph ph-cloud"></i>
-                        <h4>Cloud AI</h4>
+                    <div class="tech-card-large glow-card anim-reveal">
+                        <div class="tech-card-large__glow"></div>
+                        <i class="ph ph-code"></i>
+                        <h4>Python</h4>
+                        <p>NLP modeling, scripting, & agent loops</p>
                     </div>
-                    <div class="tech-card glow-card anim-reveal">
-                        <div class="tech-card__glow"></div>
+                    <div class="tech-card-large glow-card anim-reveal">
+                        <div class="tech-card-large__glow"></div>
+                        <i class="ph ph-layout"></i>
+                        <h4>React</h4>
+                        <p>Responsive, interactive dashboards</p>
+                    </div>
+                    <div class="tech-card-large glow-card anim-reveal">
+                        <div class="tech-card-large__glow"></div>
+                        <i class="ph ph-database"></i>
+                        <h4>Node</h4>
+                        <p>REST routing & catalog storage</p>
+                    </div>
+                    <div class="tech-card-large glow-card anim-reveal">
+                        <div class="tech-card-large__glow"></div>
                         <i class="ph ph-linux-logo"></i>
-                        <h4>Linux Systems</h4>
+                        <h4>Linux</h4>
+                        <p>Secure system environments & bash</p>
                     </div>
-                    <div class="tech-card glow-card anim-reveal">
-                        <div class="tech-card__glow"></div>
-                        <i class="ph ph-gear"></i>
-                        <h4>AI Automation</h4>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========== SKILLS / TECHNICAL STACK ========== -->
-        <section class="skills" id="skills">
-            <div class="skills__container">
-                <div class="skills__header">
-                    <div class="section-label anim-reveal">
-                        <span class="section-label__num">03</span>
-                        <span class="section-label__text">Technical Directory</span>
-                        <span class="section-label__line"></span>
-                    </div>
-                    <h2 class="skills__title anim-reveal-up">Core Stack.</h2>
-                </div>
-
-                <!-- Structured Skill Categories (Clean Lists, No bars) -->
-                <div class="skills__grid-revamp">
-                    <!-- Category 1: AI -->
-                    <div class="skills-col anim-reveal">
-                        <h3 class="skills-col__title"><i class="ph ph-sparkle"></i> AI & Agents</h3>
-                        <ul class="skills-col__list">
-                            <li>LangGraph</li>
-                            <li>Gemini API</li>
-                            <li>OpenAI API</li>
-                            <li>Prompt Engineering</li>
-                            <li>RAG Systems</li>
-                            <li>LLM Applications</li>
-                        </ul>
-                    </div>
-
-                    <!-- Category 2: Machine Learning -->
-                    <div class="skills-col anim-reveal">
-                        <h3 class="skills-col__title"><i class="ph ph-chart-scatter"></i> Machine Learning</h3>
-                        <ul class="skills-col__list">
-                            <li>Scikit-Learn</li>
-                            <li>Pandas</li>
-                            <li>NumPy</li>
-                            <li>Data Preprocessing</li>
-                            <li>Feature Engineering</li>
-                            <li>Recommendation Algorithms</li>
-                        </ul>
-                    </div>
-
-                    <!-- Category 3: Languages -->
-                    <div class="skills-col anim-reveal">
-                        <h3 class="skills-col__title"><i class="ph ph-code"></i> Languages</h3>
-                        <ul class="skills-col__list">
-                            <li>Python</li>
-                            <li>JavaScript</li>
-                            <li>TypeScript</li>
-                            <li>C++</li>
-                            <li>C</li>
-                            <li>SQL</li>
-                        </ul>
-                    </div>
-
-                    <!-- Category 4: Frontend -->
-                    <div class="skills-col anim-reveal">
-                        <h3 class="skills-col__title"><i class="ph ph-layout"></i> Frontend</h3>
-                        <ul class="skills-col__list">
-                            <li>React</li>
-                            <li>Next.js</li>
-                            <li>Tailwind CSS</li>
-                            <li>Vite</li>
-                            <li>CSS3 / HTML5</li>
-                        </ul>
-                    </div>
-
-                    <!-- Category 5: Backend -->
-                    <div class="skills-col anim-reveal">
-                        <h3 class="skills-col__title"><i class="ph ph-database"></i> Backend</h3>
-                        <ul class="skills-col__list">
-                            <li>Node.js</li>
-                            <li>Express.js</li>
-                            <li>REST APIs</li>
-                            <li>MongoDB</li>
-                            <li>Supabase</li>
-                        </ul>
-                    </div>
-
-                    <!-- Category 6: Cloud & DevOps -->
-                    <div class="skills-col anim-reveal">
-                        <h3 class="skills-col__title"><i class="ph ph-cloud-arrow-up"></i> Cloud & Systems</h3>
-                        <ul class="skills-col__list">
-                            <li>Google Cloud Platform</li>
-                            <li>Vertex AI</li>
-                            <li>Docker</li>
-                            <li>Podman</li>
-                            <li>Linux (Fedora/Ubuntu)</li>
-                            <li>Git / GitHub Workflow</li>
-                        </ul>
+                    <div class="tech-card-large glow-card anim-reveal">
+                        <div class="tech-card-large__glow"></div>
+                        <i class="ph ph-cloud"></i>
+                        <h4>Cloud</h4>
+                        <p>Docker, rootless Podman, GCP VMs</p>
                     </div>
                 </div>
             </div>
@@ -339,184 +260,244 @@
             <div class="work__container">
                 <div class="work__header">
                     <div class="section-label anim-reveal">
-                        <span class="section-label__num">04</span>
-                        <span class="section-label__text">Case Studies</span>
+                        <span class="section-label__num">03</span>
+                        <span class="section-label__text">Featured Work</span>
                         <span class="section-label__line"></span>
                     </div>
                     <h2 class="work__title anim-reveal-up">
-                        Featured Work.
+                        Case Studies.
                     </h2>
                 </div>
 
-                <div class="work__grid">
-                    <!-- Project 1: Fedora AI OS (Featured - Full Width) -->
-                    <div class="project-card project-card--featured anim-reveal glow-card" data-project="fedora-os">
-                        <div class="project-card__glow"></div>
-                        <div class="project-card__image">
-                            <div class="mock-terminal">
-                                <div class="mock-terminal__header">
-                                    <span class="mock-terminal__dot red"></span>
-                                    <span class="mock-terminal__dot yellow"></span>
-                                    <span class="mock-terminal__dot green"></span>
-                                    <span class="mock-terminal__title">fedora-ai-os@agent-01:~</span>
-                                </div>
-                                <div class="mock-terminal__body">
-                                    <p class="mock-terminal__line cmd">$ fedora-ai-init --secure</p>
-                                    <p class="mock-terminal__line success">[OK] Booting AI Sandbox Isolation Layer...</p>
-                                    <p class="mock-terminal__line info">[INFO] Mounting rootless Podman overlayfs...</p>
-                                    <p class="mock-terminal__line info">[INFO] SELinux policies applied (Agent Level)...</p>
-                                    <p class="mock-terminal__line prompt">Agent workflow active. Listening...</p>
-                                </div>
-                            </div>
-                            <div class="project-card__image-overlay"></div>
+                <!-- Structured Projects Grid (Visual Mockups & Details) -->
+                <div class="work__list-revamp">
+
+                    <!-- Project 1: Fedora AI OS -->
+                    <div class="work-item-row anim-reveal">
+                        <div class="work-item-row__image-panel glow-card">
+                            <div class="work-item-row__glow"></div>
+                            <img src="assets/fedora_architecture.png" alt="Fedora AI OS System Architecture Mockup" class="work-item-row__img">
                         </div>
-                        <div class="project-card__content">
-                            <div class="project-card__meta">
-                                <span class="project-card__label">Fedora AI OS</span>
-                                <span class="project-card__label">Flagship</span>
+                        <div class="work-item-row__content">
+                            <div class="work-item-row__meta">
+                                <span class="work-item-row__title">Fedora AI OS</span>
+                                <span class="work-item-row__badge">Flagship</span>
                             </div>
-                            <h3 class="project-card__title">AI-Native Secure Operating System</h3>
-                            <p class="project-card__tagline">Fedora AI OS — Secure Sandbox execution layer for autonomous agents.</p>
-                            <p class="project-card__desc">Designed a security-first AI OS layer enabling autonomous agents to safely interact with host systems via containerized environments, checkpoints, and strict SELinux permissions.</p>
-                            <button class="btn-case-study" data-project="fedora-os">Read Case Study <i class="ph ph-arrow-right"></i></button>
+                            <p class="work-item-row__tagline">AI-Native Secure Operating System for Autonomous AI Agents</p>
+                            <p class="work-item-row__desc">
+                                Designed and developed a security-first execution layer on top of Fedora Linux. The platform isolates AI agents inside rootless Podman containers, manages cognitive agent workflows in LangGraph, and restricts operations with strict SELinux permission enforcements.
+                            </p>
+                            
+                            <div class="work-item-row__details">
+                                <div class="detail-block">
+                                    <span class="label">Problem</span>
+                                    <span class="text">Agents running terminal commands directly on host machines expose serious security vulnerabilities.</span>
+                                </div>
+                                <div class="detail-block">
+                                    <span class="label">Solution</span>
+                                    <span class="text">Containerized sandbox workspaces with checkpointed state savings and restricted SELinux isolation profiles.</span>
+                                </div>
+                            </div>
+
+                            <div class="work-item-row__metrics">
+                                <div class="metric-badge">
+                                    <span class="num">95%</span>
+                                    <span class="txt">Workflow Recovery</span>
+                                </div>
+                                <div class="metric-badge">
+                                    <span class="num">100%</span>
+                                    <span class="txt">Container Isolation</span>
+                                </div>
+                            </div>
+
+                            <div class="work-item-row__footer">
+                                <div class="tags">
+                                    <span>Python</span><span>LangGraph</span><span>SELinux</span><span>Podman</span>
+                                </div>
+                                <div class="actions">
+                                    <a href="https://github.com/JatinGargz" target="_blank" class="action-btn"><i class="ph ph-github-logo"></i> GitHub</a>
+                                    <a href="fedora-ai-os.html" class="action-btn action-btn--primary">Read Case Study <i class="ph ph-arrow-right"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Project 2: Vigilant -->
-                    <div class="project-card anim-reveal glow-card" data-project="vigilant">
-                        <div class="project-card__glow"></div>
-                        <div class="project-card__image">
-                            <div class="mock-map">
-                                <div class="mock-map__radar"></div>
-                                <div class="mock-map__grid"></div>
-                                <div class="mock-map__node pulse-node" style="top:30%; left:45%;">
-                                    <span class="tooltip">Pothole (Critical)</span>
-                                </div>
-                                <div class="mock-map__node pulse-node secondary" style="top:60%; left:70%;">
-                                    <span class="tooltip">Road Hazard (Medium)</span>
-                                </div>
-                                <div class="mock-map__info">
-                                    <span class="lat-lng">LAT: 28.6139° N, LNG: 77.2090° E</span>
-                                </div>
-                            </div>
-                            <div class="project-card__image-overlay"></div>
+                    <div class="work-item-row anim-reveal">
+                        <div class="work-item-row__image-panel glow-card">
+                            <div class="work-item-row__glow"></div>
+                            <img src="assets/vigilant_map.png" alt="Vigilant Map Hazard Dashboard Mockup" class="work-item-row__img">
                         </div>
-                        <div class="project-card__content">
-                            <div class="project-card__meta">
-                                <span class="project-card__label">Vigilant</span>
+                        <div class="work-item-row__content">
+                            <div class="work-item-row__meta">
+                                <span class="work-item-row__title">Vigilant — AI Civic Intelligence</span>
                             </div>
-                            <h3 class="project-card__title">AI Civic Intelligence Platform</h3>
-                            <p class="project-card__tagline">Pothole & Hazard reporting with geospatial dashboard mapping.</p>
-                            <p class="project-card__desc">Integrated Gemini API to automatically classify infrastructure issues from photos and map reports on an interactive Leaflet coordinates tracker.</p>
-                            <button class="btn-case-study" data-project="vigilant">Read Case Study <i class="ph ph-arrow-right"></i></button>
+                            <p class="work-item-row__tagline">AI-Powered Hyperlocal Hazard Reporting System</p>
+                            <p class="work-item-row__desc">
+                                Built an intelligent civic hazard mapping platform. Utilizes Google's Gemini Vision API to instantly categorize uploaded image reports, estimate danger severity, detect submission spam, and map records on a Leaflet map.
+                            </p>
+
+                            <div class="work-item-row__details">
+                                <div class="detail-block">
+                                    <span class="label">Problem</span>
+                                    <span class="text">Manual urban hazard reviews are slow, slowing down repair crews and dispatch systems.</span>
+                                </div>
+                                <div class="detail-block">
+                                    <span class="label">Solution</span>
+                                    <span class="text">Automated image evaluation and severity scoring tied to public Leaflet coordinate maps.</span>
+                                </div>
+                            </div>
+
+                            <div class="work-item-row__metrics">
+                                <div class="metric-badge">
+                                    <span class="num">500+</span>
+                                    <span class="txt">Hazards Processed</span>
+                                </div>
+                                <div class="metric-badge">
+                                    <span class="num">90%</span>
+                                    <span class="txt">Manual Review Cut</span>
+                                </div>
+                            </div>
+
+                            <div class="work-item-row__footer">
+                                <div class="tags">
+                                    <span>React</span><span>Vite</span><span>Leaflet</span><span>Gemini API</span>
+                                </div>
+                                <div class="actions">
+                                    <a href="https://github.com/JatinGargz" target="_blank" class="action-btn"><i class="ph ph-github-logo"></i> GitHub</a>
+                                    <button class="action-btn action-btn--primary btn-case-study" data-project="vigilant">Read Case Study <i class="ph ph-arrow-right"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Project 3: Ghost Employee AI -->
-                    <div class="project-card anim-reveal glow-card" data-project="ghost-employee">
-                        <div class="project-card__glow"></div>
-                        <div class="project-card__image">
-                            <div class="mock-dashboard">
-                                <div class="mock-dashboard__sidebar"></div>
-                                <div class="mock-dashboard__main">
-                                    <div class="mock-dashboard__row header">
-                                        <span class="title">Workforce Analytics</span>
-                                    </div>
-                                    <div class="mock-dashboard__stats">
-                                        <div class="stat-box">
-                                            <span class="label">Productivity</span>
-                                            <div class="bar-fill" style="width: 82%"></div>
-                                        </div>
-                                        <div class="stat-box">
-                                            <span class="label">AI Auto-Summary</span>
-                                            <div class="dots-load">
-                                                <span></span><span></span><span></span>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="work-item-row anim-reveal">
+                        <div class="work-item-row__image-panel glow-card">
+                            <div class="work-item-row__glow"></div>
+                            <img src="assets/ghost_dashboard.png" alt="Ghost Employee AI Dashboard Analytics Mockup" class="work-item-row__img">
+                        </div>
+                        <div class="work-item-row__content">
+                            <div class="work-item-row__meta">
+                                <span class="work-item-row__title">Ghost Employee AI</span>
+                            </div>
+                            <p class="work-item-row__tagline">AI-Powered Workforce Analytics & Productivity Platform</p>
+                            <p class="work-item-row__desc">
+                                Created an enterprise productivity index calculator. Parses unstructured raw employee updates and timesheets through Gemini API instances to map active blocks and highlight timeline performance blocks.
+                            </p>
+
+                            <div class="work-item-row__details">
+                                <div class="detail-block">
+                                    <span class="label">Problem</span>
+                                    <span class="text">Auditing workspace logs manually takes hours of manager time without providing visual insights.</span>
+                                </div>
+                                <div class="detail-block">
+                                    <span class="label">Solution</span>
+                                    <span class="text">LLM text parsers transforming raw time logs into visual productivity metrics and timelines.</span>
                                 </div>
                             </div>
-                            <div class="project-card__image-overlay"></div>
-                        </div>
-                        <div class="project-card__content">
-                            <div class="project-card__meta">
-                                <span class="project-card__label">Ghost Employee AI</span>
+
+                            <div class="work-item-row__metrics">
+                                <div class="metric-badge">
+                                    <span class="num">2 min</span>
+                                    <span class="txt">Analysis Duration</span>
+                                </div>
+                                <div class="metric-badge">
+                                    <span class="num">98%</span>
+                                    <span class="txt">Data Formatting Accuracy</span>
+                                </div>
                             </div>
-                            <h3 class="project-card__title">Workforce Analytics Platform</h3>
-                            <p class="project-card__tagline">Converting activity logs into productivity metrics using LLMs.</p>
-                            <p class="project-card__desc">Automated employee performance evaluation, generating instant summaries and timelines by extracting insights from log matrices.</p>
-                            <button class="btn-case-study" data-project="ghost-employee">Read Case Study <i class="ph ph-arrow-right"></i></button>
+
+                            <div class="work-item-row__footer">
+                                <div class="tags">
+                                    <span>React</span><span>TypeScript</span><span>Tailwind</span><span>Gemini API</span>
+                                </div>
+                                <div class="actions">
+                                    <a href="https://github.com/JatinGargz" target="_blank" class="action-btn"><i class="ph ph-github-logo"></i> GitHub</a>
+                                    <button class="action-btn action-btn--primary btn-case-study" data-project="ghost-employee">Read Case Study <i class="ph ph-arrow-right"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Project 4: AI Content Generation Platform (Featured) -->
-                    <div class="project-card project-card--featured anim-reveal glow-card" data-project="content-platform">
-                        <div class="project-card__glow"></div>
-                        <div class="project-card__image">
-                            <div class="mock-canvas">
-                                <div class="mock-canvas__node" style="top:15%; left:15%;">
-                                    <i class="ph ph-text-t"></i>
-                                    <span>Prompt Node</span>
-                                </div>
-                                <div class="mock-canvas__node featured" style="top:45%; left:50%;">
-                                    <i class="ph ph-sparkle"></i>
-                                    <span>SDXL Turbo</span>
-                                </div>
-                                <div class="mock-canvas__node" style="top:75%; left:80%;">
-                                    <i class="ph ph-video-camera"></i>
-                                    <span>Video Synth</span>
-                                </div>
-                                <svg class="mock-canvas__lines">
-                                    <line x1="25%" y1="25%" x2="50%" y2="50%" stroke="rgba(0, 212, 255, 0.2)" stroke-width="1.5" stroke-dasharray="4"/>
-                                    <line x1="50%" y1="50%" x2="75%" y2="75%" stroke="rgba(0, 212, 255, 0.2)" stroke-width="1.5" stroke-dasharray="4"/>
-                                </svg>
-                            </div>
-                            <div class="project-card__image-overlay"></div>
+                    <!-- Project 4: AI Content Platform -->
+                    <div class="work-item-row anim-reveal">
+                        <div class="work-item-row__image-panel glow-card">
+                            <div class="work-item-row__glow"></div>
+                            <img src="assets/content_platform.png" alt="AI Content Generation Platform Canvas Mockup" class="work-item-row__img">
                         </div>
-                        <div class="project-card__content">
-                            <div class="project-card__meta">
-                                <span class="project-card__label">GenAI Platform</span>
+                        <div class="work-item-row__content">
+                            <div class="work-item-row__meta">
+                                <span class="work-item-row__title">AI Content Generation Platform</span>
                             </div>
-                            <h3 class="project-card__title">Multimodal Automation Pipeline</h3>
-                            <p class="project-card__tagline">Consistent visual workflows across generative image, video, and audio pipelines.</p>
-                            <p class="project-card__desc">A pipeline for marketing automation combining ComfyUI pipelines and Stable Diffusion prompts to maintain character consistency across content assets.</p>
-                            <button class="btn-case-study" data-project="content-platform">Read Case Study <i class="ph ph-arrow-right"></i></button>
+                            <p class="work-item-row__tagline">Multimodal Content Creation & Creative Automation Pipeline</p>
+                            <p class="work-item-row__desc">
+                                Formulated an automated creative pipeline that connects campaign brief outlines directly to image generations (SDXL), ComfyUI custom controls, and voice synthesis modules.
+                            </p>
+
+                            <div class="work-item-row__details">
+                                <div class="detail-block">
+                                    <span class="label">Problem</span>
+                                    <span class="text">Generating marketing assets requires extensive manual file movements and edits.</span>
+                                </div>
+                                <div class="detail-block">
+                                    <span class="label">Solution</span>
+                                    <span class="text">Unified automation pipelines maintaining visual consistency nodes across models.</span>
+                                </div>
+                            </div>
+
+                            <div class="work-item-row__footer">
+                                <div class="tags">
+                                    <span>Gemini</span><span>SDXL</span><span>ComfyUI</span><span>AI Voice</span>
+                                </div>
+                                <div class="actions">
+                                    <a href="https://github.com/JatinGargz" target="_blank" class="action-btn"><i class="ph ph-github-logo"></i> GitHub</a>
+                                    <button class="action-btn action-btn--primary btn-case-study" data-project="content-platform">Read Case Study <i class="ph ph-arrow-right"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Project 5: Movie Recommendation System -->
-                    <div class="project-card anim-reveal glow-card" data-project="movie-rec">
-                        <div class="project-card__glow"></div>
-                        <div class="project-card__image">
-                            <div class="mock-rec">
-                                <div class="mock-rec__card" style="transform: rotate(-6deg) translateX(-40px);">
-                                    <div class="title">Inception</div>
-                                    <span class="badge">98% Match</span>
-                                </div>
-                                <div class="mock-rec__card active">
-                                    <div class="title">Interstellar</div>
-                                    <span class="badge active">99% Match</span>
-                                </div>
-                                <div class="mock-rec__card" style="transform: rotate(6deg) translateX(40px);">
-                                    <div class="title">The Matrix</div>
-                                    <span class="badge">96% Match</span>
-                                </div>
-                            </div>
-                            <div class="project-card__image-overlay"></div>
+                    <div class="work-item-row anim-reveal">
+                        <div class="work-item-row__image-panel glow-card">
+                            <div class="work-item-row__glow"></div>
+                            <img src="assets/movie_rec.png" alt="Movie Recommendation Web Interface Mockup" class="work-item-row__img">
                         </div>
-                        <div class="project-card__content">
-                            <div class="project-card__meta">
-                                <span class="project-card__label">Movie Rec Engine</span>
+                        <div class="work-item-row__content">
+                            <div class="work-item-row__meta">
+                                <span class="work-item-row__title">Movie Recommendation Engine</span>
                             </div>
-                            <h3 class="project-card__title">Recommendation Engine</h3>
-                            <p class="project-card__tagline">Personalized recommendation engine built using content NLP vectors.</p>
-                            <p class="project-card__desc">Calculates metadata similarities through TF-IDF configurations and Cosine algorithms, deploying it under a quick Streamlit interface.</p>
-                            <button class="btn-case-study" data-project="movie-rec">Read Case Study <i class="ph ph-arrow-right"></i></button>
+                            <p class="work-item-row__tagline">Content-Based Recommendation Engine using Machine Learning</p>
+                            <p class="work-item-row__desc">
+                                Built an NLP recommendation engine matching movie characteristics. Computes similarity variables using TF-IDF text features and Cosine Similarity matrices.
+                            </p>
+
+                            <div class="work-item-row__details">
+                                <div class="detail-block">
+                                    <span class="label">Problem</span>
+                                    <span class="text">Cold start recommendations struggle to provide options without deep logs.</span>
+                                </div>
+                                <div class="detail-block">
+                                    <span class="label">Solution</span>
+                                    <span class="text">Similarity indices mapping direct descriptions and actor weights under Streamlit.</span>
+                                </div>
+                            </div>
+
+                            <div class="work-item-row__footer">
+                                <div class="tags">
+                                    <span>Python</span><span>Scikit-Learn</span><span>Pandas</span><span>Streamlit</span>
+                                </div>
+                                <div class="actions">
+                                    <a href="https://github.com/JatinGargz" target="_blank" class="action-btn"><i class="ph ph-github-logo"></i> GitHub</a>
+                                    <button class="action-btn action-btn--primary btn-case-study" data-project="movie-rec">Read Case Study <i class="ph ph-arrow-right"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Other Notable Projects -->
+                <!-- Other Projects Grid -->
                 <div class="other-projects anim-reveal">
                     <h3 class="other-projects__title">
                         <i class="ph ph-folder-open"></i>
@@ -573,7 +554,7 @@
             <div class="experience__container">
                 <div class="experience__header">
                     <div class="section-label anim-reveal">
-                        <span class="section-label__num">05</span>
+                        <span class="section-label__num">04</span>
                         <span class="section-label__text">My Timeline</span>
                         <span class="section-label__line"></span>
                     </div>
@@ -582,15 +563,15 @@
                     </h2>
                 </div>
 
-                <!-- Visual Staged Timeline Grid -->
+                <!-- Staged Timeline Grid (Career Growth style) -->
                 <div class="timeline-v2">
                     <div class="timeline-v2__item anim-reveal">
                         <div class="timeline-v2__node">2023</div>
                         <div class="timeline-v2__card glow-card">
                             <div class="timeline-v2__card-glow"></div>
-                            <h4>Started BTech CSE</h4>
-                            <p class="timeline-v2__org">Delhi Technological University (DTU)</p>
-                            <p class="timeline-v2__desc">Enrolled in Computer Science, maintaining a first-year 8.8 SGPA while shifting focus onto machine intelligence and automation.</p>
+                            <h4>Started BTech CSE @ DTU</h4>
+                            <p class="timeline-v2__org">Delhi Technological University</p>
+                            <p class="timeline-v2__desc">Enrolled in Computer Science, maintaining a first-year 8.8 SGPA while focusing on machine intelligence, NLP, and containerization.</p>
                         </div>
                     </div>
 
@@ -598,9 +579,9 @@
                         <div class="timeline-v2__node">2024</div>
                         <div class="timeline-v2__card glow-card">
                             <div class="timeline-v2__card-glow"></div>
-                            <h4>Backend Developer Intern</h4>
-                            <p class="timeline-v2__org">Woohl (Early-stage Startup)</p>
-                            <p class="timeline-v2__desc">Shipped marketplace catalog services, optimized REST API performance, and participated in AI workflow strategy discussions.</p>
+                            <h4>Backend Developer Intern @ Woohl</h4>
+                            <p class="timeline-v2__org">Early-Stage Startup</p>
+                            <p class="timeline-v2__desc">Shipped marketplace catalog structures, optimized REST API performances, and contributed to product workflow architectures.</p>
                         </div>
                     </div>
 
@@ -608,9 +589,9 @@
                         <div class="timeline-v2__node">2024</div>
                         <div class="timeline-v2__card glow-card">
                             <div class="timeline-v2__card-glow"></div>
-                            <h4>Built Movie Rec Engine</h4>
-                            <p class="timeline-v2__org">NLP / ML Project</p>
-                            <p class="timeline-v2__desc">Formulated content-based filtering algorithms using cosine vectors, deploying it successfully to Streamlit for real-time lookups.</p>
+                            <h4>Built Recommendation Engine</h4>
+                            <p class="timeline-v2__org">Machine Learning Project</p>
+                            <p class="timeline-v2__desc">Formulated similarity matrices using TF-IDF features and Cosine algorithms, deploying it under a quick Streamlit interface.</p>
                         </div>
                     </div>
 
@@ -618,19 +599,9 @@
                         <div class="timeline-v2__node">2025</div>
                         <div class="timeline-v2__card glow-card">
                             <div class="timeline-v2__card-glow"></div>
-                            <h4>Built Fedora AI OS</h4>
-                            <p class="timeline-v2__org">Sandbox Operating System</p>
-                            <p class="timeline-v2__desc">Designed a security-first execution layer for agents, utilizing LangGraph workflows and Podman containers with SELinux lockouts.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-v2__item anim-reveal">
-                        <div class="timeline-v2__node">2025</div>
-                        <div class="timeline-v2__card glow-card">
-                            <div class="timeline-v2__card-glow"></div>
-                            <h4>Built Vigilant Platform</h4>
-                            <p class="timeline-v2__org">AI Civic Intelligence</p>
-                            <p class="timeline-v2__desc">Developed geospatial hazard reporting connecting multimodal Gemini classifiers directly to interactive Leaflet dashboards.</p>
+                            <h4>Built Fedora AI OS Sandbox</h4>
+                            <p class="timeline-v2__org">Operating System Layer</p>
+                            <p class="timeline-v2__desc">Designed a secure operating sandbox containment system using rootless Podman containers, LangGraph checkpoints, and SELinux.</p>
                         </div>
                     </div>
 
@@ -640,7 +611,17 @@
                             <div class="timeline-v2__card-glow"></div>
                             <h4>Built Ghost Employee AI</h4>
                             <p class="timeline-v2__org">Enterprise Analytics</p>
-                            <p class="timeline-v2__desc">Automated raw employee log reviews using Gemini API, summarizing productivity data into structured visual dashboards.</p>
+                            <p class="timeline-v2__desc">Integrated Gemini API to parse activity files automatically, reducing manual review time for employee productivity reports.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-v2__item anim-reveal">
+                        <div class="timeline-v2__node">2026</div>
+                        <div class="timeline-v2__card glow-card">
+                            <div class="timeline-v2__card-glow"></div>
+                            <h4>Currently Building Agentic AI</h4>
+                            <p class="timeline-v2__org">Advanced Cognitive Systems</p>
+                            <p class="timeline-v2__desc">Researching stateful multi-agent orchestrations, Model Context Protocol servers, self-healing code sandboxes, and secure container layers.</p>
                         </div>
                     </div>
                 </div>
@@ -651,16 +632,16 @@
         <section class="research">
             <div class="section__container">
                 <div class="section-label anim-reveal">
-                    <span class="section-label__num">06</span>
-                    <span class="section-label__text">Research & Exploration</span>
+                    <span class="section-label__num">05</span>
+                    <span class="section-label__text">Explorations</span>
                     <span class="section-label__line"></span>
                 </div>
 
                 <div class="research__grid">
-                    <!-- Research and Experiments -->
+                    <!-- Engineering Interests -->
                     <div class="research-col glow-card anim-reveal">
                         <div class="research-col__glow"></div>
-                        <h3 class="research-col__title"><i class="ph ph-microscope"></i> Research Labs</h3>
+                        <h3 class="research-col__title"><i class="ph ph-microscope"></i> Engineering Interests</h3>
                         <ul class="research-col__list">
                             <li>Autonomous AI Agents</li>
                             <li>Prompt Optimization Frameworks</li>
@@ -679,12 +660,55 @@
                         <h3 class="research-col__title"><i class="ph ph-compass"></i> Currently Exploring</h3>
                         <ul class="research-col__list">
                             <li>Model Context Protocol (MCP)</li>
-                            <li>Agentic Security Boundaries</li>
-                            <li>Multi-Agent Consensus Networks</li>
-                            <li>RAG Vector Implementations</li>
-                            <li>Autonomous Agent Operating Layers</li>
-                            <li>Self-Healing Workflow States</li>
+                            <li>Agentic AI</li>
+                            <li>Multi-Agent Systems</li>
+                            <li>AI Security</li>
+                            <li>RAG Systems</li>
+                            <li>AI Operating Systems</li>
+                            <li>Tool Calling</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== TECHNICAL WRITING ========== -->
+        <section class="writing">
+            <div class="section__container">
+                <div class="section-label anim-reveal">
+                    <span class="section-label__num">06</span>
+                    <span class="section-label__text">Technical Writing</span>
+                    <span class="section-label__line"></span>
+                </div>
+
+                <div class="writing__grid">
+                    <a href="fedora-ai-os.html" class="writing-card glow-card anim-reveal">
+                        <div class="writing-card__glow"></div>
+                        <span class="writing-card__date">Technical Article</span>
+                        <h4>Fedora AI OS Architecture</h4>
+                        <p>Deep-dive architecture notes outlining container sandbox isolation, LangGraph loop checkpoints, and custom SELinux modules.</p>
+                        <span class="writing-card__read">Read Article <i class="ph ph-arrow-right"></i></span>
+                    </a>
+                    <div class="writing-card glow-card anim-reveal">
+                        <div class="writing-card__glow"></div>
+                        <span class="writing-card__date">System Notes</span>
+                        <h4>LangGraph State Orchestration</h4>
+                        <p>Technical patterns covering state variables mapping, loop checkpointers, fallback routers, and resilient execution loops.</p>
+                        <span class="writing-card__read">Read Article <i class="ph ph-arrow-right"></i></span>
+                    </div>
+                    <div class="writing-card glow-card anim-reveal">
+                        <div class="writing-card__glow"></div>
+                        <span class="writing-card__date">Security Policy</span>
+                        <h4>AI Container Security</h4>
+                        <p>Investigating user namespaces mapping and syscall filters inside rootless Podman execution layers for model safety.</p>
+                        <span class="writing-card__read">Read Article <i class="ph ph-arrow-right"></i></span>
+                    </div>
+                    <div class="writing-card glow-card anim-reveal">
+                        <div class="writing-card__glow"></div>
+                        <span class="writing-card__date">Prompt Engineering</span>
+                        <h4>LLM Workflows</h4>
+                        <p>A structural summary of prompt routing schemas, zero-shot structured outputs parser validation, and weight variables mappings.</p>
+                        <span class="writing-card__read">Read Article <i class="ph ph-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
@@ -739,6 +763,7 @@
                     <h2 class="contact__title anim-reveal-up">
                         Let's Build Something<br><span class="text-accent">Intelligent Together.</span>
                     </h2>
+                    <p class="contact__desc-text anim-reveal">I'm always interested in AI engineering, research, internships, and ambitious startup ideas.</p>
                 </div>
 
                 <div class="contact__grid">
@@ -811,8 +836,10 @@
     <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="footer__container">
-            <p class="footer__text">Designed & Developed by <strong>Jatin Garg</strong></p>
-            <p class="footer__text">Built with clean, modern Vanilla HTML, CSS and JS for peak performance.</p>
+            <div class="footer__details">
+                <p class="footer__text">Designed & Engineered by <strong>Jatin Garg</strong></p>
+                <p class="footer__text">Built with HTML, CSS & JavaScript. Inspired by Linear & Vercel Design Systems.</p>
+            </div>
         </div>
     </footer>
 

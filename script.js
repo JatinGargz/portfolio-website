@@ -215,7 +215,7 @@
 
     const INTERACTIVE_SELECTOR =
       'a, button, .skill-card, .project-card, .timeline-v2__card, .case-modal__close, ' +
-      '.contact-card, .tech-card, .btn-case-study, .theme-toggle, input, textarea';
+      '.contact-card, .tech-card, .tech-card-large, .writing-card, .work-item-row, .action-btn, .btn-case-study, .theme-toggle, input, textarea';
 
     const pos = { dotX: mouse.x, dotY: mouse.y, ringX: mouse.x, ringY: mouse.y };
 
