@@ -14,7 +14,7 @@
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 
-    <link rel="stylesheet" href="styles.css?v=1.6">
+    <link rel="stylesheet" href="styles.css?v=1.7">
     <style>
         .cs-page {
             max-width: 800px;
@@ -209,7 +209,21 @@
                         <div class="flowchart-node">Leaflet Map</div>
                     </div>
 
-                    <img src="assets/vigilant_map.png" alt="Vigilant Map Hazard Dashboard Mockup" class="cs-page__screenshot">
+                    <div class="work-item-row__image-panel glow-card" style="margin-bottom: 30px; border-radius: 12px; border: 1px solid var(--border);">
+                        <div class="mock-map">
+                            <div class="mock-map__radar"></div>
+                            <div class="mock-map__grid"></div>
+                            <div class="mock-map__node" style="top:30%; left:45%;">
+                                <span class="tooltip">Pothole (Critical)</span>
+                            </div>
+                            <div class="mock-map__node secondary" style="top:60%; left:70%;">
+                                <span class="tooltip">Road Hazard (Medium)</span>
+                            </div>
+                            <div class="mock-map__info">
+                                <span class="lat-lng">LAT: 28.6139° N, LNG: 77.2090° E</span>
+                            </div>
+                        </div>
+                    </div>
                     
                     <p class="cs-page__body-text">
                         User-uploaded photos are routed to Gemini multimodal endpoints, which return hazard type predictions and severity estimates. The database runs coordinate queries checking for existing alerts within a 20-meter radius, filtering out redundant submissions before plotting markers.

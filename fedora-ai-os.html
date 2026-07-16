@@ -14,7 +14,7 @@
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 
-    <link rel="stylesheet" href="styles.css?v=1.6">
+    <link rel="stylesheet" href="styles.css?v=1.7">
     <style>
         .cs-page {
             max-width: 800px;
@@ -212,7 +212,23 @@
                         <div class="flowchart-node">Fedora Host</div>
                     </div>
 
-                    <img src="assets/fedora_architecture.png" alt="Fedora AI OS Core Architecture Diagram" class="cs-page__screenshot">
+                    <div class="work-item-row__image-panel glow-card" style="margin-bottom: 30px; border-radius: 12px; border: 1px solid var(--border);">
+                        <div class="mock-terminal">
+                            <div class="mock-terminal__header">
+                                <span class="mock-terminal__dot red"></span>
+                                <span class="mock-terminal__dot yellow"></span>
+                                <span class="mock-terminal__dot green"></span>
+                                <span class="mock-terminal__title">fedora-ai-os@agent-01:~</span>
+                            </div>
+                            <div class="mock-terminal__body">
+                                <p class="mock-terminal__line cmd">$ fedora-ai-init --secure</p>
+                                <p class="mock-terminal__line success">[OK] Booting AI Sandbox Isolation Layer...</p>
+                                <p class="mock-terminal__line info">[INFO] Mounting rootless Podman overlayfs...</p>
+                                <p class="mock-terminal__line info">[INFO] SELinux policies applied (Agent Level)...</p>
+                                <p class="mock-terminal__line prompt">Agent workflow active. Listening...</p>
+                            </div>
+                        </div>
+                    </div>
                     
                     <p class="cs-page__body-text">
                         AI agents execute inside isolated, rootless Podman containers on a Fedora Linux host. The agent's cognitive loops are managed using LangGraph, storing progress snapshots to restore state during unexpected crash events. Custom SELinux policies prevent the container processes from executing system calls beyond their sandbox boundaries, providing multiple defense-in-depth levels.
