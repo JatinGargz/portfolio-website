@@ -2160,6 +2160,415 @@ li {
    KEYFRAME ANIMATIONS & TRANSITIONS
    ═══════════════════════════════════════════════════════════════════ */
 
+/* ═══════════════════════════════════════════════════════════════════
+   PROJECT IMAGE MOCKUPS & ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* -- 1. Fedora OS Terminal Mockup -- */
+.mock-terminal {
+  width: calc(100% - 32px);
+  height: calc(100% - 32px);
+  background: #09090b;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 16px;
+  font-family: monospace;
+  font-size: 11px;
+  color: #a1a1aa;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  transition: transform 0.5s var(--ease-out-expo), border-color 0.5s ease;
+}
+
+.work-item-row:hover .mock-terminal {
+  transform: scale(1.02);
+  border-color: rgba(var(--accent-rgb), 0.25);
+}
+
+.mock-terminal__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.mock-terminal__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.mock-terminal__dot.red { background: #ef4444; }
+.mock-terminal__dot.yellow { background: #eab308; }
+.mock-terminal__dot.green { background: #22c55e; }
+
+.mock-terminal__title {
+  margin-left: 8px;
+  font-size: 9px;
+  color: #555;
+  letter-spacing: 0.05em;
+}
+
+.mock-terminal__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.mock-terminal__line {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.mock-terminal__line.cmd {
+  color: var(--accent);
+}
+
+.mock-terminal__line.success {
+  color: #22c55e;
+}
+
+.mock-terminal__line.info {
+  color: #71717a;
+}
+
+.mock-terminal__line.prompt::after {
+  content: " █";
+  color: var(--accent);
+  animation: terminalBlink 1s step-end infinite;
+}
+
+@keyframes terminalBlink {
+  50% { opacity: 0; }
+}
+
+/* -- 2. Vigilant Map Mockup -- */
+.mock-map {
+  width: 100%;
+  height: 100%;
+  background: #09090b;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.mock-map__grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 112, 243, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 112, 243, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.mock-map__radar {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  top: calc(50% - 125px);
+  left: calc(50% - 125px);
+  border: 1px solid rgba(0, 112, 243, 0.06);
+  border-radius: 50%;
+}
+
+.mock-map__radar::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(0, 112, 243, 0.1) 0deg, transparent 90deg, transparent 360deg);
+  animation: radarRotate 6s linear infinite;
+}
+
+@keyframes radarRotate {
+  to { transform: rotate(360deg); }
+}
+
+.mock-map__node {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: #ef4444;
+  box-shadow: 0 0 12px #ef4444;
+}
+
+.mock-map__node::before {
+  content: "";
+  position: absolute;
+  top: -5px; left: -5px; right: -5px; bottom: -5px;
+  border: 1px solid #ef4444;
+  border-radius: 50%;
+  animation: mapPulse 1.8s ease-out infinite;
+}
+
+.mock-map__node.secondary {
+  background: #f97316;
+  box-shadow: 0 0 12px #f97316;
+}
+
+.mock-map__node.secondary::before {
+  border-color: #f97316;
+  animation-delay: 0.9s;
+}
+
+.mock-map .tooltip {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(18, 18, 24, 0.85);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-size: 9px;
+  color: #fff;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.mock-map__info {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: monospace;
+  font-size: 8px;
+  color: #555;
+  letter-spacing: 0.05em;
+}
+
+@keyframes mapPulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+
+/* -- 3. Ghost Employee AI Dashboard Mockup -- */
+.mock-dashboard {
+  width: calc(100% - 48px);
+  height: calc(100% - 48px);
+  background: #09090b;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.mock-dashboard__sidebar {
+  width: 40px;
+  border-right: 1px solid rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.mock-dashboard__main {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.mock-dashboard__row.header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  padding-bottom: 8px;
+}
+
+.mock-dashboard__row .title {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-heading);
+  text-transform: uppercase;
+}
+
+.mock-dashboard__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.stat-box .label {
+  font-size: 9px;
+  color: #555;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.bar-fill {
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  border-radius: 2px;
+  animation: barExtend 3s ease-in-out infinite alternate;
+}
+
+@keyframes barExtend {
+  from { width: 10%; }
+  to { width: 85%; }
+}
+
+.dots-load {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+  align-items: center;
+  height: 8px;
+}
+
+.dots-load span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: dotsBounce 1.2s infinite ease-in-out;
+}
+
+.dots-load span:nth-child(2) { animation-delay: 0.2s; }
+.dots-load span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotsBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* -- 4. AI Content Node Canvas Mockup -- */
+.mock-canvas {
+  width: 100%;
+  height: 100%;
+  background: #09090b;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.mock-canvas__node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: rgba(18, 18, 24, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 3;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.mock-canvas__node i {
+  color: var(--accent);
+  font-size: 11px;
+}
+
+.mock-canvas__node span {
+  font-family: var(--font-heading);
+  font-size: 9px;
+  color: var(--text-heading);
+  font-weight: 500;
+}
+
+.mock-canvas__node.featured {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(0, 112, 243, 0.2);
+}
+
+.mock-canvas__lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* -- 5. Movie Recommendation Stack Mockup -- */
+.mock-rec {
+  width: 100%;
+  height: 100%;
+  background: #09090b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mock-rec__card {
+  width: 80px;
+  height: 110px;
+  background: rgba(24, 24, 27, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s var(--ease-out-expo), border-color 0.5s ease;
+  z-index: 2;
+}
+
+.mock-rec__card .title {
+  font-family: var(--font-heading);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.mock-rec__card .badge {
+  font-size: 7px;
+  color: #555;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 2px 4px;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+
+.mock-rec__card.active {
+  border-color: var(--accent);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 112, 243, 0.15),
+              0 8px 24px rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
+.mock-rec__card.active .badge.active {
+  color: var(--accent);
+  background: rgba(0, 112, 243, 0.08);
+  border-color: rgba(0, 112, 243, 0.15);
+}
+
+.work-item-row:hover .mock-rec__card {
+  transform: rotate(0deg) scale(1) translateY(-4px);
+}
+
+.work-item-row:hover .mock-rec__card.active {
+  transform: scale(1.15) translateY(-8px);
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
