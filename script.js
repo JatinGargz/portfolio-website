@@ -1,36 +1,28 @@
 /**
  * ============================================================================
- *  AI / NEURAL-NETWORK THEMED DARK PORTFOLIO — INTERACTIVITY
+ *  AI ENGINEER PORTFOLIO — INTERACTIVITY
  * ============================================================================
- *  Accent : #00d4ff  (electric cyan-blue)
- *  Author : Jatin
- *  Built  : 2026
+ *  Accent : #0070f3 (Electric Blue)
+ *  Author : Jatin Garg
  *
- *  Features
- *  --------
- *  1.  Loading screen with fake progress + status messages
- *  2.  Neural-network canvas background (particles + connections)
- *  3.  Custom cursor with lerp
- *  4.  Scroll-reveal animations (IntersectionObserver + stagger)
- *  5.  Navigation (scroll class, mobile menu)
- *  6.  Glow-card spotlight effect
- *  7.  (Skill card hover line — CSS only)
- *  8.  Smooth scroll for anchor links
- *  9.  Contact form validation
- *  10. Footer year
- *  11. Nav scroll-spy active state
- *  12. Loader canvas particles
- * ============================================================================
+ *  Core Features:
+ *  1. Loading screen with simulated sandbox progress & status logs
+ *  2. Background Neural Network Canvas (interactive drifting particles)
+ *  3. Spring-physics Custom Cursor (trailing ring & dot)
+ *  4. Scroll Reveal Animations (staggered delay for grid elements)
+ *  5. Theme Switching (light/dark data-theme toggle & localStorage)
+ *  6. Floating Dock & Sticky Header scrolled actions
+ *  7. Case Study Modal (injects dynamic Markdown-structured project stories)
+ *  8. Glow-card spotlights cursor coordinates tracking
+ *  ============================================================================
  */
 
 ;(function () {
   'use strict';
 
   /* =========================================================================
-   *  DOM REFERENCES
+   *  DOM REFERENCES & GLOBALS
    * ========================================================================= */
-
-  // Loader
   const loader        = document.getElementById('loader');
   const loaderBar     = document.getElementById('loaderBar');
   const loaderPercent = document.getElementById('loaderPercent');
@@ -38,71 +30,57 @@
   const loaderCanvas  = document.getElementById('loaderCanvas');
   const mainContent   = document.getElementById('mainContent');
 
-  // Neural canvas
   const neuralCanvas = document.getElementById('neuralCanvas');
-
-  // Custom cursor
-  const cursorDot  = document.getElementById('cursorDot');
-  const cursorRing = document.getElementById('cursorRing');
-
-  // Navigation
-  const nav         = document.getElementById('nav');
+  const cursorDot    = document.getElementById('cursorDot');
+  const cursorRing   = document.getElementById('cursorRing');
+  const floatingDock = document.getElementById('floatingDock');
+  const nav          = document.getElementById('nav');
+  const themeToggle  = document.getElementById('themeToggle');
+  const themeIcon    = document.getElementById('themeIcon');
   const mobileToggle = document.getElementById('mobileToggle');
-  const mobileMenu  = document.getElementById('mobileMenu');
-  const mobileLinks = document.querySelectorAll('.mobile-menu__link');
+  const mobileMenu   = document.getElementById('mobileMenu');
+  const contactForm  = document.getElementById('contactForm');
 
-  // Contact
-  const contactForm = document.getElementById('contactForm');
+  const caseModal    = document.getElementById('caseModal');
+  const modalClose   = document.getElementById('modalClose');
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const modalBody    = document.getElementById('modalBody');
 
-  // Footer
-  const currentYear = document.getElementById('currentYear');
-
-  // Collections
   const glowCards      = document.querySelectorAll('.glow-card');
-  const anchorLinks    = document.querySelectorAll('a[href^="#"]');
-  const navLinks       = document.querySelectorAll('.nav__link');
-  const sections       = document.querySelectorAll('section[id]');
   const animRevealEls  = document.querySelectorAll('.anim-reveal, .anim-reveal-up');
-
-  /* =========================================================================
-   *  SHARED STATE
-   * ========================================================================= */
+  const anchorLinks    = document.querySelectorAll('a[href^="#"]');
 
   const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
   let isTouchDevice = false;
-  let loaderCanvasRAF = null;   // so we can cancel later
+  let loaderCanvasRAF = null;
 
   /* =========================================================================
    *  1. LOADING SCREEN
    * ========================================================================= */
-
   function initLoader() {
     if (!loader) { revealMainContent(); return; }
 
     const STATUS_MESSAGES = [
-      'Loading neural network...',
-      'Initializing AI models...',
-      'Compiling knowledge base...',
-      'Rendering interface...',
+      'Mounting secure container sandbox...',
+      'Spinning up workflow nodes...',
+      'Mapping technical stack indexes...',
+      'Synchronizing neural canvas...',
       'Ready.'
     ];
 
-    const DURATION   = 2500;   // ms total
-    const startTime  = performance.now();
+    const DURATION = 2000;
+    const startTime = performance.now();
 
-    // Start the small loader-canvas particle effect
     if (loaderCanvas) { startLoaderCanvas(); }
 
     function tick(now) {
-      const elapsed  = now - startTime;
+      const elapsed = now - startTime;
       const progress = Math.min(elapsed / DURATION, 1);
-      const pct      = Math.round(progress * 100);
+      const pct = Math.round(progress * 100);
 
-      // Update bar + counter
-      if (loaderBar)     loaderBar.style.width = pct + '%';
+      if (loaderBar) loaderBar.style.width = pct + '%';
       if (loaderPercent) loaderPercent.textContent = pct + '%';
 
-      // Status message — map progress to message index
       const msgIndex = Math.min(
         Math.floor(progress * STATUS_MESSAGES.length),
         STATUS_MESSAGES.length - 1
@@ -112,12 +90,11 @@
       if (progress < 1) {
         requestAnimationFrame(tick);
       } else {
-        // Finished — hide loader & reveal site
         setTimeout(function () {
           loader.classList.add('hidden');
           stopLoaderCanvas();
           revealMainContent();
-        }, 300);
+        }, 200);
       }
     }
 
@@ -126,17 +103,14 @@
 
   function revealMainContent() {
     if (mainContent) {
-      mainContent.style.opacity       = '1';
+      mainContent.style.opacity = '1';
       mainContent.style.pointerEvents = 'auto';
     }
-    // Trigger entrance animations after a short delay so CSS transitions play
-    setTimeout(triggerEntranceAnimations, 150);
+    setTimeout(triggerEntranceAnimations, 100);
   }
 
   function triggerEntranceAnimations() {
     if (nav) nav.classList.add('nav--visible');
-
-    // Force-observe all reveal elements immediately (some may already be visible)
     animRevealEls.forEach(function (el) {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
@@ -146,252 +120,120 @@
   }
 
   /* =========================================================================
-   *  12. LOADER CANVAS (small particle field on the loader)
-   * ========================================================================= */
-
-  function startLoaderCanvas() {
-    if (!loaderCanvas) return;
-    const ctx = loaderCanvas.getContext('2d');
-    if (!ctx) return;
-
-    const dpr = window.devicePixelRatio || 1;
-    let W, H;
-
-    function resize() {
-      W = loaderCanvas.parentElement
-        ? loaderCanvas.parentElement.clientWidth
-        : window.innerWidth;
-      H = loaderCanvas.parentElement
-        ? loaderCanvas.parentElement.clientHeight
-        : window.innerHeight;
-      loaderCanvas.width  = W * dpr;
-      loaderCanvas.height = H * dpr;
-      loaderCanvas.style.width  = W + 'px';
-      loaderCanvas.style.height = H + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    resize();
-
-    const PARTICLE_COUNT = 30;
-    const particles = [];
-
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particles.push({
-        x:  Math.random() * W,
-        y:  Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        r:  Math.random() * 1.5 + 0.5,
-        a:  Math.random() * 0.5 + 0.2
-      });
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-
-      // Lines
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            const alpha = (1 - dist / 120) * 0.25;
-            ctx.strokeStyle = 'rgba(0,212,255,' + alpha + ')';
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Dots
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-
-        // Wrap
-        if (p.x < 0) p.x = W;
-        if (p.x > W) p.x = 0;
-        if (p.y < 0) p.y = H;
-        if (p.y > H) p.y = 0;
-
-        ctx.fillStyle = 'rgba(0,212,255,' + p.a + ')';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      loaderCanvasRAF = requestAnimationFrame(draw);
-    }
-
-    loaderCanvasRAF = requestAnimationFrame(draw);
-  }
-
-  function stopLoaderCanvas() {
-    if (loaderCanvasRAF) {
-      cancelAnimationFrame(loaderCanvasRAF);
-      loaderCanvasRAF = null;
-    }
-  }
-
-  /* =========================================================================
    *  2. NEURAL NETWORK CANVAS BACKGROUND
    * ========================================================================= */
+  let neuralRAF = null;
+  const particles = [];
 
   function initNeuralCanvas() {
     if (!neuralCanvas) return;
     const ctx = neuralCanvas.getContext('2d');
-    if (!ctx) return;
-
-    const dpr = window.devicePixelRatio || 1;
-    let W, H;
-    let particles = [];
-
-    const CONNECTION_DIST   = 150;
-    const REPULSION_DIST    = 200;
-    const REPULSION_FORCE   = 0.6;
-
-    function getCount() {
-      return window.innerWidth < 768 ? 40 : 80;
-    }
-
+    
     function resize() {
-      W = window.innerWidth;
-      H = window.innerHeight;
-      neuralCanvas.width  = W * dpr;
-      neuralCanvas.height = H * dpr;
-      neuralCanvas.style.width  = W + 'px';
-      neuralCanvas.style.height = H + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const dpr = window.devicePixelRatio || 1;
+      neuralCanvas.width = window.innerWidth * dpr;
+      neuralCanvas.height = window.innerHeight * dpr;
+      ctx.scale(dpr, dpr);
     }
-
-    function createParticles() {
-      const count = getCount();
-      particles = [];
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x:  Math.random() * W,
-          y:  Math.random() * H,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          r:  Math.random() * 1 + 1,
-          a:  Math.random() * 0.5 + 0.3
-        });
-      }
-    }
-
-    function handleResize() {
-      resize();
-      // Re-create if the count changes (mobile ↔ desktop)
-      const target = getCount();
-      if (particles.length !== target) createParticles();
-    }
-
+    window.addEventListener('resize', resize);
     resize();
-    createParticles();
-    window.addEventListener('resize', handleResize);
 
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
+    const particleCount = window.innerWidth < 768 ? 35 : 75;
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        r: Math.random() * 1.5 + 0.8
+      });
+    }
 
-      // Update positions
+    function animate() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+      // Draw lines
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const lineColor = currentTheme === 'light' ? 'rgba(0, 112, 243, ' : 'rgba(0, 112, 243, ';
+      const nodeColor = currentTheme === 'light' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.15)';
+
       for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
+        const p1 = particles[i];
 
-        // Mouse repulsion
-        const dmx = p.x - mouse.x;
-        const dmy = p.y - mouse.y;
-        const dMouse = Math.sqrt(dmx * dmx + dmy * dmy);
-        if (dMouse < REPULSION_DIST && dMouse > 0) {
-          const force = (1 - dMouse / REPULSION_DIST) * REPULSION_FORCE;
-          p.vx += (dmx / dMouse) * force;
-          p.vy += (dmy / dMouse) * force;
+        // Repel mouse
+        const dx = mouse.x - p1.x;
+        const dy = mouse.y - p1.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 180) {
+          const force = (180 - dist) / 180;
+          p1.x -= (dx / dist) * force * 1.2;
+          p1.y -= (dy / dist) * force * 1.2;
         }
 
-        // Dampen velocity so particles don't fly off
-        p.vx *= 0.99;
-        p.vy *= 0.99;
-
-        p.x += p.vx;
-        p.y += p.vy;
+        p1.x += p1.vx;
+        p1.y += p1.vy;
 
         // Wrap edges
-        if (p.x < 0) p.x += W;
-        if (p.x > W) p.x -= W;
-        if (p.y < 0) p.y += H;
-        if (p.y > H) p.y -= H;
-      }
+        if (p1.x < 0) p1.x = window.innerWidth;
+        if (p1.x > window.innerWidth) p1.x = 0;
+        if (p1.y < 0) p1.y = window.innerHeight;
+        if (p1.y > window.innerHeight) p1.y = 0;
 
-      // Connection lines (pre-compute distance once per pair)
-      for (let i = 0; i < particles.length; i++) {
+        ctx.fillStyle = nodeColor;
+        ctx.beginPath();
+        ctx.arc(p1.x, p1.y, p1.r, 0, Math.PI * 2);
+        ctx.fill();
+
         for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < CONNECTION_DIST) {
-            const alpha = (1 - dist / CONNECTION_DIST) * 0.35;
-            ctx.strokeStyle = 'rgba(0,212,255,' + alpha + ')';
+          const p2 = particles[j];
+          const ldx = p1.x - p2.x;
+          const ldy = p1.y - p2.y;
+          const ldist = Math.sqrt(ldx * ldx + ldy * ldy);
+
+          if (ldist < 140) {
+            const alpha = (140 - ldist) / 140 * 0.12;
+            ctx.strokeStyle = lineColor + alpha + ')';
             ctx.lineWidth = 0.6;
             ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
           }
         }
       }
 
-      // Draw particles
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        ctx.fillStyle = 'rgba(0,212,255,' + p.a + ')';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      requestAnimationFrame(draw);
+      neuralRAF = requestAnimationFrame(animate);
     }
-
-    requestAnimationFrame(draw);
+    animate();
   }
 
   /* =========================================================================
    *  3. CUSTOM CURSOR
    * ========================================================================= */
-
   function initCursor() {
     if (!cursorDot || !cursorRing) return;
 
     const INTERACTIVE_SELECTOR =
-      'a, button, .skill-card, .project-card, .timeline__card, ' +
-      '.contact-card, .filter-btn, .skill-tag, .interest-tag, .other-project-card, input, textarea';
+      'a, button, .skill-card, .project-card, .timeline-v2__card, .case-modal__close, ' +
+      '.contact-card, .tech-card, .btn-case-study, .theme-toggle, input, textarea';
 
-    const pos = {
-      dotX:  mouse.x, dotY:  mouse.y,
-      ringX: mouse.x, ringY: mouse.y
-    };
+    const pos = { dotX: mouse.x, dotY: mouse.y, ringX: mouse.x, ringY: mouse.y };
 
-    // Hide default cursor on desktop via CSS (assumed), show our custom one
-    cursorDot.style.display  = 'block';
+    cursorDot.style.display = 'block';
     cursorRing.style.display = 'block';
 
-    // Track mouse
     document.addEventListener('mousemove', function (e) {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     });
 
-    // Hover class for interactive elements (event delegation on body)
     document.body.addEventListener('mouseover', function (e) {
       if (e.target.closest(INTERACTIVE_SELECTOR)) {
         cursorDot.classList.add('hover');
         cursorRing.classList.add('hover');
       }
     });
+
     document.body.addEventListener('mouseout', function (e) {
       if (e.target.closest(INTERACTIVE_SELECTOR)) {
         cursorDot.classList.remove('hover');
@@ -399,28 +241,22 @@
       }
     });
 
-    // Animation loop
     function animate() {
-      // Lerp
-      pos.dotX  += (mouse.x - pos.dotX)  * 0.25;
-      pos.dotY  += (mouse.y - pos.dotY)  * 0.25;
-      pos.ringX += (mouse.x - pos.ringX) * 0.12;
-      pos.ringY += (mouse.y - pos.ringY) * 0.12;
+      pos.dotX  += (mouse.x - pos.dotX) * 0.28;
+      pos.dotY  += (mouse.y - pos.dotY) * 0.28;
+      pos.ringX += (mouse.x - pos.ringX) * 0.14;
+      pos.ringY += (mouse.y - pos.ringY) * 0.14;
 
-      cursorDot.style.transform  =
-        'translate(' + pos.dotX + 'px, ' + pos.dotY + 'px) translate(-50%, -50%)';
-      cursorRing.style.transform =
-        'translate(' + pos.ringX + 'px, ' + pos.ringY + 'px) translate(-50%, -50%)';
+      cursorDot.style.transform  = `translate(${pos.dotX}px, ${pos.dotY}px) translate(-50%, -50%)`;
+      cursorRing.style.transform = `translate(${pos.ringX}px, ${pos.ringY}px) translate(-50%, -50%)`;
 
       requestAnimationFrame(animate);
     }
-
     requestAnimationFrame(animate);
 
-    // Touch detection — hide custom cursor on touch devices
     window.addEventListener('touchstart', function onFirstTouch() {
       isTouchDevice = true;
-      cursorDot.style.display  = 'none';
+      cursorDot.style.display = 'none';
       cursorRing.style.display = 'none';
       window.removeEventListener('touchstart', onFirstTouch);
     }, { passive: true });
@@ -429,13 +265,12 @@
   /* =========================================================================
    *  4. SCROLL REVEAL ANIMATIONS
    * ========================================================================= */
-
   function initScrollReveal() {
     if (!animRevealEls.length) return;
 
-    // Pre-compute stagger delays for children of grid/timeline containers
+    // Stagger containers
     const staggerContainers = document.querySelectorAll(
-      '.skills__grid, .work__grid, .timeline, .other-projects__grid'
+      '.skills__grid-revamp, .work__grid, .timeline-v2, .tech-cards__grid, .research__grid, .other-projects__grid'
     );
     staggerContainers.forEach(function (container) {
       const children = container.querySelectorAll('.anim-reveal, .anim-reveal-up');
@@ -449,11 +284,11 @@
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            observer.unobserve(entry.target); // once only
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' }
     );
 
     animRevealEls.forEach(function (el) {
@@ -462,44 +297,84 @@
   }
 
   /* =========================================================================
-   *  5. NAVIGATION
+   *  5. THEME SWITCHER
    * ========================================================================= */
+  function initTheme() {
+    if (!themeToggle) return;
 
-  function initNav() {
-    // Scroll class
-    function onScroll() {
-      if (!nav) return;
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // initial check
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
 
-    // Mobile toggle
-    if (mobileToggle && mobileMenu) {
-      mobileToggle.addEventListener('click', function () {
-        const isActive = mobileToggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.style.overflow = isActive ? 'hidden' : '';
-      });
+    themeToggle.addEventListener('click', function () {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-      mobileLinks.forEach(function (link) {
-        link.addEventListener('click', function () {
-          mobileToggle.classList.remove('active');
-          mobileMenu.classList.remove('active');
-          document.body.style.overflow = '';
-        });
-      });
+      document.documentElement.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('theme', nextTheme);
+      updateThemeIcon(nextTheme);
+    });
+  }
+
+  function updateThemeIcon(theme) {
+    if (!themeIcon) return;
+    if (theme === 'light') {
+      themeIcon.className = 'ph ph-sun theme-toggle__icon';
+    } else {
+      themeIcon.className = 'ph ph-moon theme-toggle__icon';
     }
   }
 
   /* =========================================================================
-   *  6. GLOW CARD SPOTLIGHT
+   *  6. NAVIGATION & DOCK EVENTS
    * ========================================================================= */
+  function initNavigation() {
+    // Header scrolled state
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 40) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
 
+    // Mobile Hamburger Toggle
+    if (mobileToggle && mobileMenu) {
+      mobileToggle.addEventListener('click', function () {
+        const isActive = mobileToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active', isActive);
+        document.body.classList.toggle('no-scroll', isActive);
+      });
+
+      mobileMenu.querySelectorAll('.mobile-menu__link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileToggle.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.classList.remove('no-scroll');
+        });
+      });
+    }
+
+    // Anchor smooth scroll with offsets
+    const NAV_OFFSET = 80;
+    anchorLinks.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
+
+        const target = document.querySelector(href);
+        if (!target) return;
+
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.pageYOffset - NAV_OFFSET;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      });
+    });
+  }
+
+  /* =========================================================================
+   *  8. SPOTLIGHT GLOW EFFECT (Mouse coordinates helper)
+   * ========================================================================= */
   function initGlowCards() {
     if (!glowCards.length) return;
 
@@ -515,38 +390,261 @@
   }
 
   /* =========================================================================
-   *  8. SMOOTH SCROLL
+   *  9. CASE STUDY MODAL INJECTION & LOGIC
    * ========================================================================= */
+  const CASE_STUDIES = {
+    'fedora-os': {
+      title: 'Fedora AI OS',
+      tagline: 'AI-Native Secure Operating System for Autonomous AI Agents',
+      techStack: 'Python, LangGraph, SELinux, Podman, Linux (Fedora)',
+      problem: 'Autonomous AI agents need system-level integrations to execute commands and complete complex tasks. However, executing unverified model-generated code directly on the host machine presents severe security vulnerabilities, such as unauthorized system modifications, local data deletion, or privilege breaches.',
+      solution: 'Developed a robust, security-first AI operating system interface on top of Fedora Linux. The system creates individual containerized sandbox environments utilizing rootless Podman execution layers. By orchestrating workflow checkpoints via LangGraph, agents execute tasks autonomously. Customized SELinux policies enforce strict permission validation to ensure host environment containment.',
+      flowchart: ['User Request', 'AI Coordinator', 'LangGraph Checkpoint', 'Rootless Podman Container', 'SELinux Enforcer', 'Fedora Linux Host'],
+      features: [
+        'Secure AI orchestration layer fully integrated with Fedora core structures',
+        'Checkpoint-based recovery in LangGraph to resume interrupted processes autonomously',
+        'Rootless Podman containers enabling absolute isolation without root exploits',
+        'Custom SELinux profiles restricting low-level syscalls and critical file modifications'
+      ],
+      challenges: 'Configuring precise SELinux policies for rootless container runtimes proved difficult due to non-standard user namespace mappings. Resolved this by analyzing syscall auditing logs (auditd) and mapping required system actions to custom security policies, ensuring containment without breaking the agent\'s operational pipelines.'
+    },
+    'vigilant': {
+      title: 'Vigilant — AI Civic Intelligence',
+      tagline: 'AI-Powered Hyperlocal Hazard Reporting System',
+      techStack: 'React, Vite, Leaflet, Gemini API',
+      problem: 'Reporting infrastructure issues (potholes, hazard spots, public dump sites) in urban areas is often slow, requiring manual categorization by city management. This leads to slow repair dispatch cycles and repetitive spam submissions.',
+      solution: 'Built an intelligent civic hazard reporting platform. The application uses Google\'s Gemini multimodal model to evaluate uploaded images instantly, classify hazards, evaluate severity indexes, and flag duplicates. Valid alerts are immediately mapped onto a real-time, public city map utilizing geospatial coordinates.',
+      flowchart: ['User Uploads Photo', 'Gemini Vision Analyzer', 'Anti-Spam Filter', 'Severity Engine', 'Leaflet Map Dashboard', 'Alert Rendered'],
+      features: [
+        'Multimodal image classification identifying pothole size, waste volume, and structural severity',
+        'Geospatial dashboard displaying verified city reports in real-time',
+        'Anti-spam and duplicate detection filtering overlapping geographic submissions',
+        'Community dashboards gamifying hazard reports and civic contributions'
+      ],
+      challenges: 'Handling duplicate detection in highly concentrated geographical areas. Solved this by setting up a coordinate-proximity indexing query, checking incoming report coordinates against existing alerts within a 20-meter radius, and comparing Gemini image classification signatures to group duplicates.'
+    },
+    'ghost-employee': {
+      title: 'Ghost Employee AI',
+      tagline: 'AI-Powered Workforce Analytics & Productivity Platform',
+      techStack: 'React, TypeScript, Tailwind CSS, Gemini API',
+      problem: 'Auditing raw employee logs (timesheets, workspace records, activity updates) manually is time-consuming for manager evaluations and fails to provide structured patterns or highlight structural bottlenecks in scaling workflows.',
+      solution: 'Created an intelligent workforce analytics portal. The system ingests raw time and log structures, parsing them through Gemini model pipelines to transform unstructured activity records into structured metrics, active blocks, and automated performance summaries.',
+      flowchart: ['Raw Log Input', 'Gemini Text Parser', 'Summary Generator', 'Timeline Visualizer', 'Productivity Metrics Board'],
+      features: [
+        'Transforming unstructured workspace logs into clean dashboard data',
+        'Automated AI summaries highlighting blockages and project achievements',
+        'Responsive dashboards featuring interactive timelines and active state metrics',
+        'Secure enterprise handling ensuring sensitive details are redacted before API calls'
+      ],
+      challenges: 'Ensuring LLM accuracy in parsing complex log matrices containing non-standard time expressions. Improved this by building a zero-shot parsing schema and strict JSON validation checks to format log variables consistently before visual charting.'
+    },
+    'content-platform': {
+      title: 'AI Content Generation Platform',
+      tagline: 'Multimodal Content Creation & Creative Automation Pipeline',
+      techStack: 'Gemini, Google AI Studio, Stable Diffusion XL, ComfyUI, Prompt Engineering',
+      problem: 'Developing high-volume visual and narrative marketing materials manually creates brand inconsistencies, slow production turnarounds, and lack of visual templating across multiple AI gen tools.',
+      solution: 'Formulated a unified, end-to-end multimodal content generation pipeline. By connecting text generation (Gemini), custom design nodes (ComfyUI / SDXL), video engines, and audio templates, users can convert a single prompt brief into consistent social ads and visual templates.',
+      flowchart: ['Campaign Brief', 'Gemini Coperc', 'Stable Diffusion (Visuals)', 'ComfyUI Workflow', 'Video Synthesis Pipeline', 'Branded Deliverable'],
+      features: [
+        'Reusable prompt templates maintaining strict character consistency across frames',
+        'Automated video overlays adding consistent voice and background elements',
+        'Unified prompt interface connecting text models to specialized graphic engines',
+        'Optimized pipeline configs for batch rendering visual promotional assets'
+      ],
+      challenges: 'Maintaining character face consistency across varying image generation queries. Solved this by utilizing ComfyUI workflows integrated with IP-Adapter controls, embedding a base facial template to bind character weights during batch generations.'
+    },
+    'movie-rec': {
+      title: 'Movie Recommendation System',
+      tagline: 'Content-Based Recommendation Engine using Machine Learning',
+      techStack: 'Python, Scikit-learn, Pandas, NumPy, Streamlit',
+      problem: 'Collaborative filtering systems rely on deep user logs (suffering from the cold-start issue). Content recommendation models must parse unstructured film metadata (genres, synopses, directors) to provide immediate, contextually similar matches.',
+      solution: 'Engineered a text-similarity matching index. Preprocesses textual movie records, vectorizes features using TF-IDF matrices, and computes Cosine Similarity coefficients to find metadata similarities. Deployed the index inside a clean, sidebar-controlled Streamlit application.',
+      flowchart: ['Raw Movie Metadata', 'Text Preprocessor', 'TF-IDF Matrix Vectorizer', 'Cosine Similarity Engine', 'Streamlit Interface'],
+      features: [
+        'NLP text processing parsing complex descriptions, actors, and genres',
+        'Fast Cosine Similarity matrix indices providing instant similar recommendations',
+        'Streamlit interface with adjustable matching threshold weights',
+        'Pandas pipelines optimizing memory usage during dataset lookups'
+      ],
+      challenges: 'Optimizing computing speeds of the similarity matrix as the database grew. Resolved this by building localized cache headers using Streamlit\'s `@st.cache_data` and trimming descriptive vectors down to high-weight keywords.'
+    }
+  };
 
-  function initSmoothScroll() {
-    if (!anchorLinks.length) return;
+  function initCaseStudyModal() {
+    if (!caseModal || !modalClose || !modalBackdrop) return;
 
-    const NAV_OFFSET = 80;
+    // Delegate project study buttons
+    document.body.addEventListener('click', function (e) {
+      const btn = e.target.closest('.btn-case-study');
+      if (btn) {
+        const projectId = btn.getAttribute('data-project');
+        if (projectId && CASE_STUDIES[projectId]) {
+          openCaseStudy(projectId);
+        }
+      }
+    });
 
-    anchorLinks.forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        const href = link.getAttribute('href');
-        if (!href || href === '#') return;
+    modalClose.addEventListener('click', closeCaseStudy);
+    modalBackdrop.addEventListener('click', closeCaseStudy);
 
-        const target = document.querySelector(href);
-        if (!target) return;
-
-        e.preventDefault();
-
-        const top =
-          target.getBoundingClientRect().top +
-          window.pageYOffset -
-          NAV_OFFSET;
-
-        window.scrollTo({ top: top, behavior: 'smooth' });
-      });
+    // Escape key closes modal
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && caseModal.classList.contains('open')) {
+        closeCaseStudy();
+      }
     });
   }
 
-  /* =========================================================================
-   *  9. CONTACT FORM
-   * ========================================================================= */
+  function openCaseStudy(id) {
+    const data = CASE_STUDIES[id];
+    if (!data) return;
 
+    // Build flowchart HTML
+    let flowchartHTML = '';
+    if (data.flowchart && data.flowchart.length) {
+      flowchartHTML = `<div class="cs-section">
+        <h4>System Architecture</h4>
+        <div class="flowchart">`;
+      data.flowchart.forEach((node, index) => {
+        flowchartHTML += `<div class="flowchart-node">${node}</div>`;
+        if (index < data.flowchart.length - 1) {
+          flowchartHTML += `<div class="flowchart-arrow"><i class="ph ph-caret-right"></i></div>`;
+        }
+      });
+      flowchartHTML += `</div></div>`;
+    }
+
+    // Build features list
+    let featuresHTML = '';
+    if (data.features && data.features.length) {
+      featuresHTML = `<div class="cs-section">
+        <h4>Key Features</h4>
+        <ul class="cs-list">`;
+      data.features.forEach(feat => {
+        featuresHTML += `<li>${feat}</li>`;
+      });
+      featuresHTML += `</ul></div>`;
+    }
+
+    // Construct full body content
+    const htmlContent = `
+      <div class="cs-header">
+        <h3 class="cs-title">${data.title}</h3>
+        <p class="cs-tagline">${data.tagline}</p>
+      </div>
+      <div class="cs-section">
+        <h4>Technology Stack</h4>
+        <div class="cs-tags">
+          ${data.techStack.split(',').map(tag => `<span>${tag.trim()}</span>`).join('')}
+        </div>
+      </div>
+      <div class="cs-section">
+        <h4>The Problem</h4>
+        <p class="cs-text">${data.problem}</p>
+      </div>
+      <div class="cs-section">
+        <h4>The Solution</h4>
+        <p class="cs-text">${data.solution}</p>
+      </div>
+      ${flowchartHTML}
+      ${featuresHTML}
+      <div class="cs-section">
+        <h4>Challenges & Learnings</h4>
+        <p class="cs-text">${data.challenges}</p>
+      </div>
+      <div class="cs-links">
+        <a href="https://github.com/JatinGargz" target="_blank" rel="noopener noreferrer"><i class="ph ph-github-logo"></i> View Repository</a>
+        <a href="#" class="btn-live-demo"><i class="ph ph-globe"></i> Live Demo</a>
+      </div>
+    `;
+
+    if (modalBody) {
+      modalBody.innerHTML = htmlContent;
+    }
+
+    caseModal.classList.add('open');
+    document.body.classList.add('no-scroll');
+    if (cursorDot) {
+      cursorDot.classList.remove('hover');
+      cursorRing.classList.remove('hover');
+    }
+  }
+
+  function closeCaseStudy() {
+    caseModal.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+  }
+
+  /* =========================================================================
+   *  12. LOADER CANVAS (small particle field on loader)
+   * ========================================================================= */
+  const loaderParticles = [];
+  function startLoaderCanvas() {
+    if (!loaderCanvas) return;
+    const ctx = loaderCanvas.getContext('2d');
+    
+    function resize() {
+      loaderCanvas.width = window.innerWidth;
+      loaderCanvas.height = window.innerHeight;
+    }
+    resize();
+
+    for (let i = 0; i < 30; i++) {
+      loaderParticles.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
+        r: Math.random() * 1.2 + 0.6
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      ctx.fillStyle = 'rgba(0, 112, 243, 0.2)';
+
+      for (let i = 0; i < loaderParticles.length; i++) {
+        const p = loaderParticles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > window.innerWidth) p.vx *= -1;
+        if (p.y < 0 || p.y > window.innerHeight) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let j = i + 1; j < loaderParticles.length; j++) {
+          const p2 = loaderParticles[j];
+          const dx = p.x - p2.x;
+          const dy = p.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 150) {
+            ctx.strokeStyle = 'rgba(0, 112, 243, ' + (150 - dist) / 150 * 0.05 + ')';
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+      loaderCanvasRAF = requestAnimationFrame(draw);
+    }
+    draw();
+  }
+
+  function stopLoaderCanvas() {
+    if (loaderCanvasRAF) {
+      cancelAnimationFrame(loaderCanvasRAF);
+    }
+  }
+
+  /* =========================================================================
+   *  9. CONTACT FORM INTEGRATION
+   * ========================================================================= */
   function initContactForm() {
     if (!contactForm) return;
 
@@ -558,7 +656,6 @@
       const fields = contactForm.querySelectorAll('[required]');
       let valid = true;
 
-      // Reset previous error states
       fields.forEach(function (field) {
         field.style.borderColor = '';
       });
@@ -580,21 +677,22 @@
 
       if (!valid) return;
 
-      // "Send" success
       const btn = contactForm.querySelector('button[type="submit"]');
       if (btn) {
         const originalHTML = btn.innerHTML;
         btn.innerHTML =
-          '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" ' +
-          'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" ' +
+          'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2".5 ' +
           'stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px">' +
           '<polyline points="20 6 9 17 4 12"></polyline></svg>Message Sent!';
         btn.style.backgroundColor = '#22c55e';
+        btn.style.color = '#fff';
         btn.disabled = true;
 
         setTimeout(function () {
           btn.innerHTML = originalHTML;
           btn.style.backgroundColor = '';
+          btn.style.color = '';
           btn.disabled = false;
           contactForm.reset();
         }, 3000);
@@ -603,92 +701,24 @@
   }
 
   /* =========================================================================
-   *  10. FOOTER YEAR
+   *  INITIALIZATION
    * ========================================================================= */
-
-  function initFooterYear() {
-    if (currentYear) {
-      currentYear.textContent = new Date().getFullYear();
-    }
-  }
-
-  /* =========================================================================
-   *  11. NAV SCROLL-SPY (active link highlight)
-   * ========================================================================= */
-
-  function initScrollSpy() {
-    if (!sections.length || !navLinks.length) return;
-
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            navLinks.forEach(function (link) {
-              const href = link.getAttribute('href');
-              if (href === '#' + id) {
-                link.classList.add('active');
-              } else {
-                link.classList.remove('active');
-              }
-            });
-          }
-        });
-      },
-      {
-        // Top of section must be in upper half of viewport
-        rootMargin: '-20% 0px -60% 0px',
-        threshold: 0
-      }
-    );
-
-    sections.forEach(function (section) {
-      observer.observe(section);
-    });
-  }
-
-  /* =========================================================================
-   *  GLOBAL MOUSE TRACKING (for neural canvas when cursor module is absent)
-   * ========================================================================= */
-
-  function initGlobalMouse() {
-    // Only add if cursor module didn't already attach a listener
-    // We use a flag on the document to avoid duplicate listeners
-    if (!document.__portfolioMouseTracking) {
-      document.addEventListener('mousemove', function (e) {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-      });
-      document.__portfolioMouseTracking = true;
-    }
-  }
-
-  /* =========================================================================
-   *  INIT — single entry point
-   * ========================================================================= */
-
   function init() {
-    initGlobalMouse();
+    initTheme();
     initLoader();
     initNeuralCanvas();
     initCursor();
     initScrollReveal();
-    initNav();
+    initNavigation();
     initGlowCards();
-    initSmoothScroll();
+    initCaseStudyModal();
     initContactForm();
-    initFooterYear();
-    initScrollSpy();
+
+    const currentYearEl = document.getElementById('currentYear');
+    if (currentYearEl) {
+      currentYearEl.textContent = new Date().getFullYear();
+    }
   }
 
-  /* =========================================================================
-   *  BOOT
-   * ========================================================================= */
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    // DOM already ready (script loaded with defer/async or at bottom)
-    init();
-  }
+  document.addEventListener('DOMContentLoaded', init);
 })();
